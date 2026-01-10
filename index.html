@@ -640,21 +640,21 @@ const PRICELIST = [
          {brand: "Blackbearl triple ss beer", ml: 500, price:150},
          {brand: "thunder bolt supreme strong", ml: 500, price:150},
          {brand:"kolt", ml:650 , price:150},
-  {brand:"cardinal vsop pre bdy",ml:180,price:210}
-    {brand:"cardinal vsop pre bdy",ml:375,price:420}
-    {brand:"cardinal vsop pre bdy",ml:750,price:840}
-    {brand:"night owl vsop pre bdy",ml:180,price:200}
-  {brand:"night owl vsop pre bdy",ml:375,price:400}
-  {brand:"night owl vsop pre bdy",ml750:,price:800}
-  {brand:"veeran s bdy",ml:180,price:140}
-  {brand:"veeran s bdy",ml:375,price:280}
-  {brand:"veeran s bdy",ml:750,price:560}
-  {brand:"classic gra p rum",ml:180,price:200}
-  {brand:"classic gra p rum",ml:375,price:400}
-  {brand:"classic gra p rum",ml:750,price:800}
-    {brand:"mgm gova vodka",ml:180,price:250}
-  {brand:"mgm gova vodka",ml:375,price:500}
-  {brand:"mgm gova vodka",ml:750,price:1000}
+  {brand:"cardinal vsop pre bdy",ml:180,price:210},
+    {brand:"cardinal vsop pre bdy",ml:375,price:420},
+    {brand:"cardinal vsop pre bdy",ml:750,price:840},
+    {brand:"night owl vsop pre bdy",ml:180,price:200},
+  {brand:"night owl vsop pre bdy",ml:375,price:400},
+  {brand:"night owl vsop pre bdy",ml750:,price:800},
+  {brand:"veeran s bdy",ml:180,price:140},
+  {brand:"veeran s bdy",ml:375,price:280},
+  {brand:"veeran s bdy",ml:750,price:560},
+  {brand:"classic gra p rum",ml:180,price:200},
+  {brand:"classic gra p rum",ml:375,price:400},
+  {brand:"classic gra p rum",ml:750,price:800},
+    {brand:"mgm gova vodka",ml:180,price:250},
+  {brand:"mgm gova vodka",ml:375,price:500},
+  {brand:"mgm gova vodka",ml:750,price:1000},
                   {brand: "British empire pre g why", ml: 180, price:260},
            {brand: "British empire pre g why", ml: 375, price:520},
            {brand: "British empire pre g why", ml: 750, price:1040},
@@ -812,9 +812,9 @@ function renderGroupedTables() {
     totals.className = "totalsTable";
     totals.innerHTML = `
       <tr>
-        <td>Total OB: ${money(totalOB)}</td>
-        <td>Total CB: ${money(totalCB)}</td>
-        <td>Total Sales: ${money(totalSales)}</td>
+        <td>Total OB BOT: ${money(totalOB)}</td>
+        <td>Total CB BOT: ${money(totalCB)}</td>
+        <td>Total Sales BOT: ${money(totalSales)}</td>
         <td>Total Sales Value: ${money(totalSV)}</td>
         <td>Total CB Value: ${money(totalCBV)}</td>
       </tr>
@@ -832,9 +832,9 @@ function renderGroupedTables() {
   t9Totals.className = "totalsTable";
   t9Totals.innerHTML = `
     <tr>
-      <td>Total OB: ${money(t9OB)}</td>
-      <td>Total CB: ${money(t9CB)}</td>
-      <td>Total Sales: ${money(t9Sales)}</td>
+      <td>Total OB BOT: ${money(t9OB)}</td>
+      <td>Total CB BOT: ${money(t9CB)}</td>
+      <td>Total Sales BOT: ${money(t9Sales)}</td>
       <td>Total Sales Value: ${money(t9SV)}</td>
       <td>Total CB Value: ${money(t9CBV)}</td>
     </tr>
@@ -851,9 +851,9 @@ function renderGroupedTables() {
   t10Totals.className = "totalsTable";
   t10Totals.innerHTML = `
     <tr>
-      <td>Total OB: ${money(t10OB)}</td>
-      <td>Total CB: ${money(t10CB)}</td>
-      <td>Total Sales: ${money(t10Sales)}</td>
+      <td>Total OB BOT: ${money(t10OB)}</td>
+      <td>Total CB BOT: ${money(t10CB)}</td>
+      <td>Total Sales BOT: ${money(t10Sales)}</td>
       <td>Total Sales Value: ${money(t10SV)}</td>
       <td>Total CB Value: ${money(t10CBV)}</td>
     </tr>
@@ -1038,6 +1038,7 @@ renderGroupedTables();       // show all 8 tables immediately
 </script>
 </body>
 </html>
+
 
 
 
