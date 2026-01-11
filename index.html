@@ -118,7 +118,7 @@
 
     <br><br><hr><hr>
 
-    <button type="button" id="muhil" onclick="downloadCSV()">Download CSV</button>
+    <button type="button" id="muhil">EDIT</button>
 
     <br><br><hr>
 
@@ -868,7 +868,7 @@ function renderGroupedTables() {
 
 
 
-/* ---------------- SUBMIT ---------------- */
+/* ---------------- SUBMIT (ADD / EDIT) ---------------- */
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -887,40 +887,38 @@ form.addEventListener("submit", function(e) {
   const sv = price * sales;
   const cbv = price * cb;
 
+  const newRecord = [brand, ml, ob, cb, sales, price, sv, cbv];
+  const groupIndex = GROUPS.findIndex(g => g.filter(newRecord));
+  if (groupIndex === -1) {
+    alert("This record doesn't match any table rules.");
+    return;
+  }
 
+  const editIndexStr = localStorage.getItem("editIndex");
+  const isEditing = editIndexStr !== null;
+  const editIndex = isEditing ? parseInt(editIndexStr, 10) : -1;
 
+  if (isEditing) {
+    records[editIndex] = newRecord;
+    localStorage.removeItem("editIndex");
+    alert("Row updated successfully.");
+  } else {
+    const duplicateInSameTable = records.some(r =>
+      GROUPS[groupIndex].filter(r) && r[0].toLowerCase() === brand.toLowerCase()
+    );
 
-// Which group/table will this record belong to?
-const newRecord = [brand, ml, ob, cb, sales, price, sv, cbv];
-const groupIndex = GROUPS.findIndex(g => g.filter(newRecord));
+    if (duplicateInSameTable) {
+      alert(`"${brand}" already exists in Table ${groupIndex + 1}. Not added.`);
+      return;
+    }
 
-if (groupIndex === -1) {
-  alert("This record doesn't match any table rules.");
-  return;
-}
+    records.push(newRecord);
+  }
 
-// Check duplicate brand inside that table (same group)
-const duplicateInSameTable = records.some(r =>
-  GROUPS[groupIndex].filter(r) && r[0].toLowerCase() === brand.toLowerCase()
-);
-
-if (duplicateInSameTable) {
-  alert(`"${brand}" already exists in Table ${groupIndex + 1}. Not added.`);
-  return;
-}
-
-
-
-
-
-
-  records.push([brand, ml, ob, cb, sales, price, sv, cbv]);
   saveData();
-
   renderGroupedTables();
 
   form.reset();
-  // keep suggestions still working after reset
   brandInput.setAttribute("list", "suggestions");
   datalist.innerHTML = "";
 });
@@ -994,32 +992,62 @@ eraseSubmit.addEventListener("click", () => {
 
 
 
+/* ---------------- EDIT ROW (TABLE NO + ROW NO) ---------------- */
+document.getElementById("muhil").addEventListener("click", function () {
+  const tableNoStr = prompt("Enter Table Number to edit:");
+  if (tableNoStr === null) return;
 
+  const rowNoStr = prompt("Enter Row Number to edit:");
+  if (rowNoStr === null) return;
 
+  const tableNo = parseInt(tableNoStr, 10);
+  const rowNo = parseInt(rowNoStr, 10);
 
-
-
-
-
-
-
-/* ---------------- CSV DOWNLOAD ---------------- */
-function downloadCSV() {
-  if (records.length === 0) { alert("no data"); return; }
-
-  let csv = "S.No,Brand,ML,OB,CB,Sales,Price,SalesValue,CBValue\n";
-  for (let i = 0; i < records.length; i++) {
-    csv += (i + 1) + "," + records[i].join(",") + "\n";
+  if (!Number.isInteger(tableNo) || !Number.isInteger(rowNo) || tableNo < 1 || tableNo > 8 || rowNo < 1) {
+    alert("Invalid table or row number.");
+    return;
   }
 
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "records.csv";
-  a.click();
-  URL.revokeObjectURL(url);
-}
+  const groupIndex = tableNo - 1;
+  const g = GROUPS[groupIndex];
+
+  const groupRecords = records
+    .map((r, idx) => ({ r, idx }))
+    .filter(obj => g.filter(obj.r))
+    .sort((a, b) => Number(a.r[5]) - Number(b.r[5]));
+
+  if (groupRecords.length === 0) {
+    alert("No records in this table.");
+    return;
+  }
+  if (rowNo > groupRecords.length) {
+    alert(`This table has only ${groupRecords.length} rows.`);
+    return;
+  }
+
+  const target = groupRecords[rowNo - 1];
+  const globalIndex = target.idx;
+  const row = target.r;
+
+  brandInput.value = row[0];
+  mlSelect.value = row[1];
+  document.getElementById("ob").value = row[2];
+  document.getElementById("cb").value = row[3];
+  priceInput.value = row[5];
+
+  localStorage.setItem("editIndex", globalIndex);
+
+  alert("Row loaded. Edit values and press Submit to save.");
+});
+
+
+
+
+
+
+
+
+
 
 /* ---------------- CLEAR ALL ---------------- */
 
@@ -1057,6 +1085,7 @@ renderGroupedTables();       // show all 8 tables immediately
 </script>
 </body>
 </html>
+
 
 
 
