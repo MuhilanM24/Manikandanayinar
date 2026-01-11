@@ -1022,14 +1022,33 @@ function downloadCSV() {
 }
 
 /* ---------------- CLEAR ALL ---------------- */
-function clearAll() {
+
+
+  function clearAll() {
+  const ok = confirm("Do you want to clear all records?");
+  if (!ok) return;
+
+  const text = prompt('Type "yes" to clear all records:');
+  if (text === null) return;
+
+  if (text.toLowerCase() !== "yes") {
+    alert("Clear cancelled.");
+    return;
+  }
+
+  records = [];
+  localStorage.removeItem(STORAGEKEY);
+  renderGroupedTables();
+}
+
+/*function clearAll() {
   const ok = confirm("Do you want to clear all records?");
   if (!ok) return;
 
   records = [];
   localStorage.removeItem(STORAGEKEY);
   renderGroupedTables();
-}
+}*/
 
 /* Initial page load */
 loadData();
@@ -1038,6 +1057,7 @@ renderGroupedTables();       // show all 8 tables immediately
 </script>
 </body>
 </html>
+
 
 
 
