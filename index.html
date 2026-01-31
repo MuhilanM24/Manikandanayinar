@@ -121,6 +121,11 @@
     <button type="button" id="muhil">EDIT</button>
 
     <br><br><hr>
+    <button type="button" id="editAllBtn">Edit All</button>
+
+<button type="button" id="saveAllBtn" style="display:none;">Save</button>
+
+<br><br><hr>
 
     <button type="button" id="qwe" onclick="clearAll()">Clear table</button>
     <br><br><hr>
@@ -869,6 +874,102 @@ function renderGroupedTables() {
 
 
 
+/* --------- EDIT ALL (choose table 1–8) --------- */
+const editAllBtn = document.getElementById("editAllBtn");
+const saveAllBtn = document.getElementById("saveAllBtn");
+let currentEditGroupIndex = null;  // which GROUPS[...] in Edit All
+
+editAllBtn.addEventListener("click", function () {
+  const tableNoStr = prompt("Enter Table Number (1-8) to Edit All OB & CB:");
+  if (tableNoStr === null) return;
+
+  const tableNo = parseInt(tableNoStr, 10);
+  if (!Number.isInteger(tableNo) || tableNo < 1 || tableNo > 8) {
+    alert("Please enter a number from 1 to 8.");
+    return;
+  }
+
+  const host = document.getElementById("groups");
+  const allTables = host.querySelectorAll("table");
+
+  // For each group we rendered:
+  //  - 1 main table
+  //  - 1 totals table
+  // So main tables indices: 0,2,4,6,8,10,12,14
+  const mainTableIndex = (tableNo - 1) * 2;
+  const table = allTables[mainTableIndex];
+
+  if (!table) {
+    alert("Table not found.");
+    return;
+  }
+
+  currentEditGroupIndex = tableNo - 1;
+
+  for (let i = 1; i < table.rows.length; i++) {
+    const row = table.rows[i];
+    const obCell = row.cells[3]; // OB
+    const cbCell = row.cells[4]; // CB
+    if (!obCell || !cbCell) continue;
+
+    obCell.contentEditable = "true";
+    cbCell.contentEditable = "true";
+    obCell.classList.add("editing");
+    cbCell.classList.add("editing");
+  }
+
+  editAllBtn.style.display = "none";
+  saveAllBtn.style.display = "inline-block";
+});
+
+saveAllBtn.addEventListener("click", function () {
+  if (currentEditGroupIndex === null) return;
+
+  const host = document.getElementById("groups");
+  const allTables = host.querySelectorAll("table");
+  const mainTableIndex = currentEditGroupIndex * 2;
+  const table = allTables[mainTableIndex];
+  if (!table) return;
+
+  const g = GROUPS[currentEditGroupIndex];
+
+  // Same order as renderGroupedTables (by price)
+  const groupRows = records
+    .map((rec, idx) => ({ rec, idx }))
+    .filter(x => g.filter(x.rec))
+    .sort((a, b) => Number(a.rec[5]) - Number(b.rec[5]));
+
+  for (let i = 1; i < table.rows.length && i <= groupRows.length; i++) {
+    const rowEl = table.rows[i];
+    const obCell = rowEl.cells[3];
+    const cbCell = rowEl.cells[4];
+    if (!obCell || !cbCell) continue;
+
+    obCell.contentEditable = "false";
+    cbCell.contentEditable = "false";
+    obCell.classList.remove("editing");
+    cbCell.classList.remove("editing");
+
+    const newOB = parseFloat(obCell.textContent || 0);
+    const newCB = parseFloat(cbCell.textContent || 0);
+
+    const recIndex = groupRows[i - 1].idx;
+    const rec = records[recIndex];
+
+    rec[2] = newOB;            // OB
+    rec[3] = newCB;            // CB
+    rec[4] = newOB - newCB;    // Sales
+    rec[6] = rec[5] * rec[4];  // Sales Value
+    rec[7] = rec[5] * rec[3];  // CB Value
+  }
+
+  saveData();
+  renderGroupedTables();
+
+  currentEditGroupIndex = null;
+  saveAllBtn.style.display = "none";
+  editAllBtn.style.display = "inline-block";
+});
 
 
 
@@ -1090,6 +1191,7 @@ renderGroupedTables();       // show all 8 tables immediately
 </script>
 </body>
 </html>
+
 
 
 
