@@ -832,10 +832,12 @@ function renderGroupedTables() {
     host.appendChild(totals);
   });
 
-  // Table 9 output
+
+
+  // Table 9 output (IMSF)
   const t9Title = document.createElement("h2");
   t9Title.className = "groupTitle";
-  t9Title.textContent = "Table 9 (IMSF)";
+  t9Title.textContent = "(IMSF)";
   host.appendChild(t9Title);
 
   const t9Totals = document.createElement("table");
@@ -851,10 +853,10 @@ function renderGroupedTables() {
   `;
   host.appendChild(t9Totals);
 
-  // Table 10 output
+  // Table 10 output (BEER)
   const t10Title = document.createElement("h2");
   t10Title.className = "groupTitle";
-  t10Title.textContent = "Table 10 (BEER)";
+  t10Title.textContent = "(BEER)";
   host.appendChild(t10Title);
 
   const t10Totals = document.createElement("table");
@@ -869,8 +871,33 @@ function renderGroupedTables() {
     </tr>
   `;
   host.appendChild(t10Totals);
-}
 
+  // Table 11: TOTAL = IMSF + BEER
+  const totalTitle = document.createElement("h2");
+  totalTitle.className = "groupTitle";
+  totalTitle.textContent = "Total(IMSF&BEER)";
+  host.appendChild(totalTitle);
+
+  const totalTable = document.createElement("table");
+  totalTable.className = "totalsTable";
+
+  const totalOB = t9OB + t10OB;
+  const totalCB = t9CB + t10CB;
+  const totalSales = t9Sales + t10Sales;
+  const totalSV = t9SV + t10SV;
+  const totalCBV = t9CBV + t10CBV;
+
+  totalTable.innerHTML = `
+    <tr>
+      <td>Total OB BOT: ${money(totalOB)}</td>
+      <td>Total CB BOT: ${money(totalCB)}</td>
+      <td>Total Sales BOT: ${money(totalSales)}</td>
+      <td>Total Sales Value: ${money(totalSV)}</td>
+      <td>Total CB Value: ${money(totalCBV)}</td>
+    </tr>
+  `;
+  host.appendChild(totalTable);
+}
 
 
 
@@ -1191,6 +1218,7 @@ renderGroupedTables();       // show all 8 tables immediately
 </script>
 </body>
 </html>
+
 
 
 
