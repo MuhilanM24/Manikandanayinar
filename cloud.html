@@ -196,7 +196,7 @@
       }
     }
 
-    // Optional: Load report into localStorage for calculator page to read
+    // Load report into localStorage for calculator page to read
     window.loadReportFromCloud = async function(id) {
       if (!currentUser) return alert("Please login first.");
       if (!confirm("Load this report into local storage for calculator?\n(Existing local data will be overwritten)")) return;
@@ -212,7 +212,6 @@
         }
         const d = docSnap.data();
         const recs = d.data || [];
-        // store in localStorage so calculator.html can load it
         localStorage.setItem("calcrecords", JSON.stringify(
           recs.map(o => [o.brand, o.ml, o.ob, o.cb, o.sales, o.price, o.sv, o.cbv])
         ));
@@ -242,10 +241,17 @@
       }
     };
 
-    // Delete: remove document from Firestore
+    // Delete: require typing "yes" and then remove document from Firestore
     window.deleteReport = async function(id, name) {
       if (!currentUser) return alert("Please login first.");
-      if (!confirm(`Delete report "${name}" permanently?`)) return;
+
+      const text = prompt(`Type "yes" to delete report "${name}" permanently:`);
+      if (text === null) return; // cancelled
+      if (text.toLowerCase() !== "yes") {
+        alert("Delete cancelled.");
+        return;
+      }
+
       try {
         await db.collection("users")
           .doc(currentUser.uid)
