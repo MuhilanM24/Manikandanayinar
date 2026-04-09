@@ -213,7 +213,7 @@
   <script>
     /* ---------------- PRICE CHART ---------------- */
     const PRICELIST = [
-   { brand: "Old king xxxx rum", ml: 180, price: 140 },
+         { brand: "Old king xxxx rum", ml: 180, price: 140 },
         { brand: "Old king xxxx rum", ml: 375, price: 280 },
         { brand: "Old king xxxx rum", ml: 750, price: 560 },
         { brand: "Mens club dlx bdy", ml: 180, price:140 },
@@ -790,6 +790,22 @@
     function money(n) { return (Number(n) || 0).toFixed(2); }
     function sumField(arr, idx) { return arr.reduce((a, r) => a + (Number(r[idx]) || 0), 0); }
 
+    // shared comparator: price first, then brand
+    function compareByPriceThenBrand(a, b) {
+      const priceA = Number(a[5]);
+      const priceB = Number(b[5]);
+      if (priceA !== priceB) return priceA - priceB;
+      const brandA = (a[0] || "").toLowerCase();
+      const brandB = (b[0] || "").toLowerCase();
+      return brandA.localeCompare(brandB);
+    }
+    function compareObjByPriceThenBrand(x, y) {
+      // x, y are {rec, idx} or {r, idx}
+      const ra = x.rec || x.r;
+      const rb = y.rec || y.r;
+      return compareByPriceThenBrand(ra, rb);
+    }
+
     const GROUPS = [
       { key: "180_140",   title: "Table 1: 180 ml (Price <= 140)", filter: r => r[1] === 180 && r[5] <= 140 },
       { key: "180_170",   title: "Table 2: 180 ml (Price = 170)",  filter: r => r[1] === 180 && r[5] === 170 },
@@ -800,19 +816,6 @@
       { key: "650",  title: "Table 7: 650 ml",  filter: r => r[1] === 650 },
       { key: "500",  title: "Table 8: 500 ml",  filter: r => r[1] === 500 }
     ];
-
-    // helper: group-wise sorter
-    function sortForGroup(idx, aRec, bRec) {
-      const brandA = (aRec[0] || "").toLowerCase();
-      const brandB = (bRec[0] || "").toLowerCase();
-      if (idx === 0 || idx === 2) {
-        const priceA = Number(aRec[5]);
-        const priceB = Number(bRec[5]);
-        if (priceA !== priceB) return priceA - priceB;
-        return brandA.localeCompare(brandB);
-      }
-      return brandA.localeCompare(brandB);
-    }
 
     function renderGroupedTables() {
       const host = document.getElementById("groups");
@@ -825,7 +828,7 @@
         const rows = records
           .filter(g.filter)
           .slice()
-          .sort((a, b) => sortForGroup(idx, a, b));
+          .sort(compareByPriceThenBrand);
 
         const totalOB = sumField(rows, 2);
         const totalCB = sumField(rows, 3);
@@ -955,7 +958,7 @@
     const editAllBtn = document.getElementById("editAllBtn");
     const saveAllBtn = document.getElementById("saveAllBtn");
     let editAllActive = false;
-    let currentEditGroupIndex = null; // for single-group mode if you use it
+    let currentEditGroupIndex = null;
 
     editAllBtn.addEventListener("click", function () {
       if (editAllActive) {
@@ -976,7 +979,7 @@
         const rows = t.querySelectorAll("tbody tr");
         rows.forEach(row => {
           const cells = row.querySelectorAll("td");
-          if (cells.length < 9) return; // skip "No records"
+          if (cells.length < 9) return;
           const obCell    = cells[3];
           const salesCell = cells[5];
           obCell.contentEditable = "true";
@@ -999,7 +1002,7 @@
         const groupRows = records
           .map((rec, idx) => ({ rec, idx }))
           .filter(x => g.filter(x.rec))
-          .sort((a, b) => sortForGroup(groupIndex, a.rec, b.rec));
+          .sort(compareObjByPriceThenBrand);
 
         if (groupRows.length === 0) return;
 
@@ -1067,7 +1070,7 @@
       const groupRows = records
         .map((rec, i) => ({ rec, idx: i }))
         .filter(x => g.filter(x.rec))
-        .sort((a, b) => sortForGroup(idx, a.rec, b.rec));
+        .sort(compareObjByPriceThenBrand);
 
       for (let i = 1; i < table.rows.length && i <= groupRows.length; i++) {
         const rowEl = table.rows[i];
@@ -1181,7 +1184,7 @@
       const tableRows = records
         .map((rec, idx) => ({ rec, idx }))
         .filter(x => g.filter(x.rec))
-        .sort((a, b) => sortForGroup(tno - 1, a.rec, b.rec));
+        .sort(compareObjByPriceThenBrand);
       if (tableRows.length === 0) {
         alert("No records in this table");
         return;
@@ -1214,7 +1217,7 @@
       const groupRecords = records
         .map((r, idx) => ({ r, idx }))
         .filter(obj => g.filter(obj.r))
-        .sort((a, b) => sortForGroup(groupIndex, a.r, b.r));
+        .sort((a, b) => compareByPriceThenBrand(a.r, b.r));
       if (groupRecords.length === 0) {
         alert("No records in this table.");
         return;
