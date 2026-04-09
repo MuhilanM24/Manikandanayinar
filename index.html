@@ -21,7 +21,10 @@
       width: 95%;
       max-width: 1100px;
     }
-    th, td { border: 1px solid #333; padding: 6px 10px; }
+    th, td {
+      border: 1px solid #333;
+      padding: 6px 10px;
+    }
     th { background: #f1e2c6; }
     .groupTitle { text-align: center; margin: 18px 0 6px; }
     .totalsTable {
@@ -31,8 +34,20 @@
       background: yellow;
       font-weight: bold;
     }
-    #qwe { background: red; color: #fff; padding: 8px 14px; border: 0; cursor: pointer; }
-    #muhil { background: green; color: #fff; padding: 8px 14px; border: 0; cursor: pointer; }
+    #qwe, .qwe {
+      background: red;
+      color: #fff;
+      padding: 8px 14px;
+      border: 0;
+      cursor: pointer;
+    }
+    #muhil, .muhil {
+      background: green;
+      color: #fff;
+      padding: 8px 14px;
+      border: 0;
+      cursor: pointer;
+    }
     input, select { padding: 6px; }
     .editing { background: #ffeeba; }
 
@@ -89,23 +104,16 @@
       #cloudButtons {
         display: none !important;
       }
-      body {
-        background: white !important;
-      }
+      body { background: white !important; }
       table {
         width: 100% !important;
         max-width: 100% !important;
       }
-      .totalsTable {
-        page-break-inside: avoid;
-      }
-      h2 {
-        page-break-after: avoid;
-      }
+      .totalsTable { page-break-inside: avoid; }
+      h2 { page-break-after: avoid; }
     }
   </style>
 </head>
-
 <body>
   <!-- Google login bar -->
   <div class="auth-bar">
@@ -122,7 +130,6 @@
     <label for="brand">Brand name</label>
     <input type="text" id="brand" placeholder="Type brand name..." autocomplete="off" />
     <datalist id="suggestions"></datalist>
-
     <br><br>
 
     <label for="ml">ML</label>
@@ -136,35 +143,29 @@
       <option value="750">750 ml</option>
       <option value="1000">1000 ml</option>
     </select>
-
     <br><br>
 
     <label for="ob">Enter opening balance</label>
     <input type="number" id="ob" name="ob" placeholder="Enter the number" />
-
     <br><br>
 
     <label for="cb">Enter closing balance</label>
     <input type="number" id="cb" name="cb" placeholder="Enter the number" />
-
     <br><br>
 
     <label for="price">price</label>
     <input type="number" id="price" name="price" placeholder="price" />
-
     <br><br>
 
     <input type="reset" value="clear" />
     <input type="submit" value="submit" />
-
     <br><br><hr><hr>
 
     <button type="button" id="muhil">EDIT</button>
-
     <br><br><hr>
+
     <button type="button" id="editAllBtn">Edit All</button>
     <button type="button" id="saveAllBtn" style="display:none;">Save</button>
-
     <br><br><hr>
 
     <!-- New cloud-related buttons -->
@@ -173,11 +174,11 @@
       <button type="button" id="storeCloudBtn">☁️ STORE TO CLOUD</button>
       <button type="button" id="listBtn">📂 CLOUD LISTS</button>
     </div>
-
     <br><br><hr>
 
     <button type="button" id="qwe" onclick="clearAll()">Clear table</button>
     <br><br><hr>
+
     <button type="button" id="printBtn" onclick="printReport()">Print / Save PDF</button>
   </form>
 
@@ -187,7 +188,6 @@
   <!-- Erase row UI -->
   <div id="eraseBox" style="width:95%;max-width:1100px;margin:10px auto;text-align:center;">
     <button type="button" id="eraseBtn" class="qwe">Erase Row</button>
-
     <div id="eraseForm" style="display:none;margin-top:10px;">
       <input type="number" id="eraseTableNo" min="1" max="8" placeholder="Table no (1-8)">
       <input type="number" id="eraseRowNo" min="1" placeholder="Row no (N)">
@@ -213,7 +213,7 @@
   <script>
     /* ---------------- PRICE CHART ---------------- */
     const PRICELIST = [
-     { brand: "Old king xxxx rum", ml: 180, price: 140 },
+   { brand: "Old king xxxx rum", ml: 180, price: 140 },
         { brand: "Old king xxxx rum", ml: 375, price: 280 },
         { brand: "Old king xxxx rum", ml: 750, price: 560 },
         { brand: "Mens club dlx bdy", ml: 180, price:140 },
@@ -801,6 +801,19 @@
       { key: "500",  title: "Table 8: 500 ml",  filter: r => r[1] === 500 }
     ];
 
+    // helper: group-wise sorter
+    function sortForGroup(idx, aRec, bRec) {
+      const brandA = (aRec[0] || "").toLowerCase();
+      const brandB = (bRec[0] || "").toLowerCase();
+      if (idx === 0 || idx === 2) {
+        const priceA = Number(aRec[5]);
+        const priceB = Number(bRec[5]);
+        if (priceA !== priceB) return priceA - priceB;
+        return brandA.localeCompare(brandB);
+      }
+      return brandA.localeCompare(brandB);
+    }
+
     function renderGroupedTables() {
       const host = document.getElementById("groups");
       host.innerHTML = "";
@@ -812,15 +825,7 @@
         const rows = records
           .filter(g.filter)
           .slice()
-          .sort((a, b) => {
-            const priceA = Number(a[5]);
-            const priceB = Number(b[5]);
-            if (priceA !== priceB) return priceA - priceB;
-
-            const brandA = (a[0] || "").toLowerCase();
-            const brandB = (b[0] || "").toLowerCase();
-            return brandA.localeCompare(brandB);
-          });
+          .sort((a, b) => sortForGroup(idx, a, b));
 
         const totalOB = sumField(rows, 2);
         const totalCB = sumField(rows, 3);
@@ -994,7 +999,7 @@
         const groupRows = records
           .map((rec, idx) => ({ rec, idx }))
           .filter(x => g.filter(x.rec))
-          .sort((a, b) => Number(a.rec[5]) - Number(b.rec[5]));
+          .sort((a, b) => sortForGroup(groupIndex, a.rec, b.rec));
 
         if (groupRows.length === 0) return;
 
@@ -1062,7 +1067,7 @@
       const groupRows = records
         .map((rec, i) => ({ rec, idx: i }))
         .filter(x => g.filter(x.rec))
-        .sort((a, b) => Number(a.rec[5]) - Number(b.rec[5]));
+        .sort((a, b) => sortForGroup(idx, a.rec, b.rec));
 
       for (let i = 1; i < table.rows.length && i <= groupRows.length; i++) {
         const rowEl = table.rows[i];
@@ -1134,9 +1139,11 @@
         localStorage.removeItem("editIndex");
         alert("Row updated successfully.");
       } else {
-        const duplicateInSameTable = records.some(r =>
-          GROUPS[groupIndex].filter(r) && r[0].toLowerCase() === brand.toLowerCase()
-        );
+        const duplicateInSameTable = records.some(r => {
+          const inSameGroup = GROUPS[groupIndex].filter(r);
+          const sameBrand = (r[0] || "").toLowerCase() === brand.toLowerCase();
+          return inSameGroup && sameBrand;
+        });
         if (duplicateInSameTable) {
           alert(`"${brand}" already exists in Table ${groupIndex + 1}. Not added.`);
           return;
@@ -1174,7 +1181,7 @@
       const tableRows = records
         .map((rec, idx) => ({ rec, idx }))
         .filter(x => g.filter(x.rec))
-        .sort((a, b) => Number(a.rec[5]) - Number(b.rec[5]));
+        .sort((a, b) => sortForGroup(tno - 1, a.rec, b.rec));
       if (tableRows.length === 0) {
         alert("No records in this table");
         return;
@@ -1207,7 +1214,7 @@
       const groupRecords = records
         .map((r, idx) => ({ r, idx }))
         .filter(obj => g.filter(obj.r))
-        .sort((a, b) => Number(a.r[5]) - Number(b.r[5]));
+        .sort((a, b) => sortForGroup(groupIndex, a.r, b.r));
       if (groupRecords.length === 0) {
         alert("No records in this table.");
         return;
