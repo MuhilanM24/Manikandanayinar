@@ -5,12 +5,10 @@
   <title>Ⓜ️GROUPS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -20,95 +18,16 @@
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
             display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            orbitron: ['Orbitron', 'monospace'],
           },
           colors: {
-            brand: {
-              400: '#ff4d5a',
-              500: '#e50914',
-              600: '#cf0813',
-              700: '#b20710',
-            },
-            accent: {
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-            },
-            neon: {
-              blue: '#00d4ff',
-              purple: '#a855f7',
-              pink: '#ec4899',
-              cyan: '#22d3ee',
-            }
+            brand: { 400: '#ff4d5a', 500: '#e50914', 600: '#cf0813', 700: '#b20710' },
+            accent: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' },
+            neon: { blue: '#00d4ff', purple: '#a855f7', pink: '#ec4899', cyan: '#22d3ee' }
           },
           boxShadow: {
             soft: '0 22px 55px rgba(0,0,0,0.75)',
             glow: '0 0 40px rgba(0,212,255,0.15)',
-            'glow-brand': '0 0 40px rgba(229,9,20,0.2)',
-            'glow-accent': '0 0 40px rgba(34,197,94,0.2)',
-            'inner-glow': 'inset 0 1px 0 rgba(255,255,255,0.1)',
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'float-delayed': 'float 6s ease-in-out 2s infinite',
-            'float-slow': 'float 8s ease-in-out 1s infinite',
-            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-            'shimmer': 'shimmer 3s ease-in-out infinite',
-            'gradient-shift': 'gradientShift 8s ease-in-out infinite',
-            'slide-up': 'slideUp 0.6s cubic-bezier(0.16,1,0.3,1)',
-            'slide-down': 'slideDown 0.5s cubic-bezier(0.16,1,0.3,1)',
-            'fade-in': 'fadeIn 0.5s ease-out',
-            'scale-in': 'scaleIn 0.4s cubic-bezier(0.16,1,0.3,1)',
-            'blur-in': 'blurIn 0.6s ease-out',
-            'ripple': 'ripple 0.6s ease-out',
-            'spin-slow': 'spin 20s linear infinite',
-            'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '33%': { transform: 'translateY(-12px) rotate(1deg)' },
-              '66%': { transform: 'translateY(8px) rotate(-1deg)' },
-            },
-            pulseGlow: {
-              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-              '50%': { opacity: '0.8', transform: 'scale(1.05)' },
-            },
-            shimmer: {
-              '0%': { backgroundPosition: '-200% 0' },
-              '100%': { backgroundPosition: '200% 0' },
-            },
-            gradientShift: {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
-            },
-            slideUp: {
-              '0%': { opacity: '0', transform: 'translateY(30px) scale(0.97)' },
-              '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
-            },
-            slideDown: {
-              '0%': { opacity: '0', transform: 'translateY(-20px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
-            scaleIn: {
-              '0%': { opacity: '0', transform: 'scale(0.9)' },
-              '100%': { opacity: '1', transform: 'scale(1)' },
-            },
-            blurIn: {
-              '0%': { opacity: '0', filter: 'blur(10px)' },
-              '100%': { opacity: '1', filter: 'blur(0)' },
-            },
-            ripple: {
-              '0%': { transform: 'scale(0)', opacity: '0.5' },
-              '100%': { transform: 'scale(4)', opacity: '0' },
-            },
-            bounceSubtle: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-4px)' },
-            },
           },
         }
       }
@@ -117,642 +36,769 @@
 
   <style>
     /* ══════════════════════════════════════════════
-       COSMIC BACKGROUND SYSTEM
+       THEME SYSTEM — 4 THEMES
     ══════════════════════════════════════════════ */
-    body {
-      background: #050510;
-      position: relative;
-      overflow-x: hidden;
+
+    /* ── THEME 1: COSMIC (default dark) ── */
+    [data-theme="cosmic"] {
+      --bg-primary: #050510;
+      --orb1: rgba(229,9,20,0.4);
+      --orb2: rgba(0,212,255,0.3);
+      --orb3: rgba(168,85,247,0.3);
+      --orb4: rgba(236,72,153,0.25);
+      --orb5: rgba(34,211,238,0.2);
+      --glass-bg: rgba(10,15,30,0.75);
+      --glass-border: rgba(255,255,255,0.08);
+      --header-bg: rgba(10,15,30,0.9);
+      --input-bg: rgba(5,10,25,0.6);
+      --table-bg: rgba(8,12,25,0.6);
+      --text-primary: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-line: #00d4ff;
     }
 
-    .bg-cosmos {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
+    /* ── THEME 2: FOREST (emerald/nature dark) ── */
+    [data-theme="forest"] {
+      --bg-primary: #020d08;
+      --orb1: rgba(34,197,94,0.35);
+      --orb2: rgba(16,185,129,0.3);
+      --orb3: rgba(52,211,153,0.25);
+      --orb4: rgba(134,239,172,0.2);
+      --orb5: rgba(6,78,59,0.4);
+      --glass-bg: rgba(5,20,12,0.78);
+      --glass-border: rgba(34,197,94,0.12);
+      --header-bg: rgba(2,15,8,0.92);
+      --input-bg: rgba(2,10,6,0.65);
+      --table-bg: rgba(3,12,7,0.65);
+      --text-primary: #ecfdf5;
+      --text-muted: #6ee7b7;
+      --accent-line: #22c55e;
     }
 
-    .bg-cosmos .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.35;
-      animation: orbDrift 25s ease-in-out infinite;
+    /* ── THEME 3: SUNSET (amber/orange warm) ── */
+    [data-theme="sunset"] {
+      --bg-primary: #0d0500;
+      --orb1: rgba(251,146,60,0.4);
+      --orb2: rgba(245,158,11,0.35);
+      --orb3: rgba(239,68,68,0.3);
+      --orb4: rgba(253,224,71,0.2);
+      --orb5: rgba(194,65,12,0.35);
+      --glass-bg: rgba(20,10,3,0.78);
+      --glass-border: rgba(251,146,60,0.12);
+      --header-bg: rgba(15,7,0,0.92);
+      --input-bg: rgba(12,5,0,0.65);
+      --table-bg: rgba(10,5,0,0.65);
+      --text-primary: #fff7ed;
+      --text-muted: #fdba74;
+      --accent-line: #f97316;
     }
 
-    .bg-cosmos .orb:nth-child(1) {
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(229,9,20,0.4), transparent 70%);
-      top: -15%; left: -10%;
-      animation-duration: 30s;
-    }
-    .bg-cosmos .orb:nth-child(2) {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,212,255,0.3), transparent 70%);
-      top: 40%; right: -15%;
-      animation-delay: -8s;
-      animation-duration: 28s;
-    }
-    .bg-cosmos .orb:nth-child(3) {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%);
-      bottom: -10%; left: 25%;
-      animation-delay: -15s;
-      animation-duration: 32s;
-    }
-    .bg-cosmos .orb:nth-child(4) {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(236,72,153,0.25), transparent 70%);
-      top: 20%; left: 50%;
-      animation-delay: -20s;
-      animation-duration: 35s;
-    }
-    .bg-cosmos .orb:nth-child(5) {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(34,211,238,0.2), transparent 70%);
-      bottom: 30%; right: 30%;
-      animation-delay: -12s;
-      animation-duration: 26s;
-    }
-
-    @keyframes orbDrift {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(80px, -60px) scale(1.1); }
-      50% { transform: translate(-50px, 80px) scale(0.9); }
-      75% { transform: translate(60px, 30px) scale(1.05); }
-    }
-
-    /* Grid overlay */
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background-size: 80px 80px;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
-      mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
-    }
-
-    /* Noise */
-    .bg-noise {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      opacity: 0.025;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 256px 256px;
-    }
-
-    /* Floating particles */
-    .particles {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      animation: particleFloat linear infinite;
-    }
-    .particle:nth-child(1) { width:2px;height:2px;left:8%;animation-duration:14s;animation-delay:0s; }
-    .particle:nth-child(2) { width:3px;height:3px;left:18%;animation-duration:18s;animation-delay:-3s;opacity:0.4; }
-    .particle:nth-child(3) { width:2px;height:2px;left:32%;animation-duration:12s;animation-delay:-7s; }
-    .particle:nth-child(4) { width:4px;height:4px;left:45%;animation-duration:20s;animation-delay:-2s;opacity:0.3; }
-    .particle:nth-child(5) { width:2px;height:2px;left:58%;animation-duration:15s;animation-delay:-9s; }
-    .particle:nth-child(6) { width:3px;height:3px;left:72%;animation-duration:16s;animation-delay:-5s;opacity:0.5; }
-    .particle:nth-child(7) { width:2px;height:2px;left:85%;animation-duration:13s;animation-delay:-11s; }
-    .particle:nth-child(8) { width:3px;height:3px;left:92%;animation-duration:17s;animation-delay:-4s;opacity:0.35; }
-    .particle:nth-child(9) { width:2px;height:2px;left:50%;animation-duration:19s;animation-delay:-13s; }
-    .particle:nth-child(10){ width:4px;height:4px;left:25%;animation-duration:22s;animation-delay:-6s;opacity:0.2; }
-
-    @keyframes particleFloat {
-      0% { transform: translateY(105vh) scale(0); opacity: 0; }
-      8% { opacity: 1; transform: translateY(92vh) scale(1); }
-      92% { opacity: 0.4; }
-      100% { transform: translateY(-5vh) translateX(30px) scale(0.3); opacity: 0; }
+    /* ── THEME 4: ARCTIC (ice/white minimal) ── */
+    [data-theme="arctic"] {
+      --bg-primary: #f8fafc;
+      --orb1: rgba(56,189,248,0.25);
+      --orb2: rgba(99,102,241,0.2);
+      --orb3: rgba(168,85,247,0.15);
+      --orb4: rgba(14,165,233,0.2);
+      --orb5: rgba(167,243,208,0.3);
+      --glass-bg: rgba(255,255,255,0.6);
+      --glass-border: rgba(148,163,184,0.25);
+      --header-bg: rgba(255,255,255,0.8);
+      --input-bg: rgba(241,245,249,0.8);
+      --table-bg: rgba(248,250,252,0.7);
+      --text-primary: #0f172a;
+      --text-muted: #475569;
+      --accent-line: #0ea5e9;
     }
 
     /* ══════════════════════════════════════════════
-       ULTRA GLASS MORPHISM
+       GLOBAL BASE
+    ══════════════════════════════════════════════ */
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      position: relative;
+      overflow-x: hidden;
+      transition: background 0.6s ease, color 0.6s ease;
+    }
+
+    /* ══════════════════════════════════════════════
+       COSMIC BACKGROUND
+    ══════════════════════════════════════════════ */
+    .bg-cosmos {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .bg-cosmos .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(100px); opacity: 0.4;
+      animation: orbDrift 25s ease-in-out infinite;
+      transition: background 0.8s ease;
+    }
+    .bg-cosmos .orb:nth-child(1) {
+      width:700px;height:700px;
+      background: radial-gradient(circle, var(--orb1), transparent 70%);
+      top:-15%;left:-10%;animation-duration:30s;
+    }
+    .bg-cosmos .orb:nth-child(2) {
+      width:600px;height:600px;
+      background: radial-gradient(circle, var(--orb2), transparent 70%);
+      top:40%;right:-15%;animation-delay:-8s;animation-duration:28s;
+    }
+    .bg-cosmos .orb:nth-child(3) {
+      width:500px;height:500px;
+      background: radial-gradient(circle, var(--orb3), transparent 70%);
+      bottom:-10%;left:25%;animation-delay:-15s;animation-duration:32s;
+    }
+    .bg-cosmos .orb:nth-child(4) {
+      width:400px;height:400px;
+      background: radial-gradient(circle, var(--orb4), transparent 70%);
+      top:20%;left:50%;animation-delay:-20s;animation-duration:35s;
+    }
+    .bg-cosmos .orb:nth-child(5) {
+      width:350px;height:350px;
+      background: radial-gradient(circle, var(--orb5), transparent 70%);
+      bottom:30%;right:30%;animation-delay:-12s;animation-duration:26s;
+    }
+    @keyframes orbDrift {
+      0%,100% { transform:translate(0,0) scale(1); }
+      25% { transform:translate(80px,-60px) scale(1.1); }
+      50% { transform:translate(-50px,80px) scale(0.9); }
+      75% { transform:translate(60px,30px) scale(1.05); }
+    }
+
+    .bg-grid {
+      position:fixed;inset:0;z-index:1;pointer-events:none;
+      background-size:80px 80px;
+      background-image:
+        linear-gradient(to right,rgba(255,255,255,0.015) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(255,255,255,0.015) 1px,transparent 1px);
+      mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);
+      -webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);
+    }
+    [data-theme="arctic"] .bg-grid {
+      background-image:
+        linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px);
+    }
+
+    .bg-noise {
+      position:fixed;inset:0;z-index:1;opacity:0.025;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:256px 256px;
+    }
+
+    .particles { position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden; }
+    .particle {
+      position:absolute;border-radius:50%;
+      background:rgba(255,255,255,0.25);
+      animation:particleFloat linear infinite;
+    }
+    [data-theme="arctic"] .particle { background:rgba(14,165,233,0.3); }
+    [data-theme="forest"] .particle { background:rgba(34,197,94,0.3); }
+    [data-theme="sunset"] .particle { background:rgba(251,146,60,0.3); }
+
+    .particle:nth-child(1){width:2px;height:2px;left:8%;animation-duration:14s;}
+    .particle:nth-child(2){width:3px;height:3px;left:18%;animation-duration:18s;animation-delay:-3s;opacity:.4;}
+    .particle:nth-child(3){width:2px;height:2px;left:32%;animation-duration:12s;animation-delay:-7s;}
+    .particle:nth-child(4){width:4px;height:4px;left:45%;animation-duration:20s;animation-delay:-2s;opacity:.3;}
+    .particle:nth-child(5){width:2px;height:2px;left:58%;animation-duration:15s;animation-delay:-9s;}
+    .particle:nth-child(6){width:3px;height:3px;left:72%;animation-duration:16s;animation-delay:-5s;opacity:.5;}
+    .particle:nth-child(7){width:2px;height:2px;left:85%;animation-duration:13s;animation-delay:-11s;}
+    .particle:nth-child(8){width:3px;height:3px;left:92%;animation-duration:17s;animation-delay:-4s;opacity:.35;}
+    .particle:nth-child(9){width:2px;height:2px;left:50%;animation-duration:19s;animation-delay:-13s;}
+    .particle:nth-child(10){width:4px;height:4px;left:25%;animation-duration:22s;animation-delay:-6s;opacity:.2;}
+
+    @keyframes particleFloat {
+      0%{transform:translateY(105vh) scale(0);opacity:0;}
+      8%{opacity:1;transform:translateY(92vh) scale(1);}
+      92%{opacity:.4;}
+      100%{transform:translateY(-5vh) translateX(30px) scale(.3);opacity:0;}
+    }
+
+    /* ══════════════════════════════════════════════
+       GLASS MORPHISM (CSS variable driven)
     ══════════════════════════════════════════════ */
     .glass-ultra {
       background:
-        radial-gradient(ellipse at top left, rgba(255,255,255,0.08), transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(0,212,255,0.06), transparent 50%);
-      background-color: rgba(10, 15, 30, 0.75);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.08);
+        radial-gradient(ellipse at top left,rgba(255,255,255,0.08),transparent 50%),
+        radial-gradient(ellipse at bottom right,rgba(0,212,255,0.05),transparent 50%);
+      background-color: var(--glass-bg);
+      backdrop-filter:blur(40px) saturate(180%);
+      -webkit-backdrop-filter:blur(40px) saturate(180%);
+      border:1px solid var(--glass-border);
       box-shadow:
-        0 25px 60px rgba(0,0,0,0.5),
+        0 25px 60px rgba(0,0,0,0.4),
         inset 0 1px 0 rgba(255,255,255,0.08),
-        inset 0 -1px 0 rgba(0,0,0,0.3);
+        inset 0 -1px 0 rgba(0,0,0,0.15);
+      transition: background-color 0.6s ease, border-color 0.6s ease;
+    }
+    [data-theme="arctic"] .glass-ultra {
+      box-shadow:0 10px 40px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.9);
     }
 
     .glass-header {
-      background:
-        linear-gradient(135deg, rgba(10,15,30,0.9) 0%, rgba(15,20,40,0.85) 100%);
-      backdrop-filter: blur(50px) saturate(200%);
-      -webkit-backdrop-filter: blur(50px) saturate(200%);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      box-shadow:
-        0 8px 32px rgba(0,0,0,0.4),
-        inset 0 -1px 0 rgba(255,255,255,0.05);
+      background-color: var(--header-bg);
+      backdrop-filter:blur(50px) saturate(200%);
+      -webkit-backdrop-filter:blur(50px) saturate(200%);
+      border-bottom:1px solid var(--glass-border);
+      box-shadow:0 8px 32px rgba(0,0,0,0.3),inset 0 -1px 0 rgba(255,255,255,0.05);
+      transition: background-color 0.6s ease, border-color 0.6s ease;
     }
 
     .glass-card {
-      background:
-        radial-gradient(ellipse at top, rgba(255,255,255,0.06), transparent 60%),
-        radial-gradient(ellipse at bottom right, rgba(168,85,247,0.04), transparent 60%);
-      background-color: rgba(10, 15, 30, 0.7);
-      backdrop-filter: blur(30px) saturate(160%);
-      -webkit-backdrop-filter: blur(30px) saturate(160%);
-      border: 1px solid rgba(255,255,255,0.07);
-      box-shadow:
-        0 20px 50px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.06);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background-color: var(--glass-bg);
+      backdrop-filter:blur(30px) saturate(160%);
+      -webkit-backdrop-filter:blur(30px) saturate(160%);
+      border:1px solid var(--glass-border);
+      box-shadow:0 20px 50px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.06);
+      transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-
     .glass-card:hover {
-      border-color: rgba(255,255,255,0.12);
-      box-shadow:
-        0 25px 60px rgba(0,0,0,0.5),
-        0 0 40px rgba(0,212,255,0.08),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-      transform: translateY(-2px);
+      border-color:var(--accent-line);
+      box-shadow:0 25px 60px rgba(0,0,0,0.4),0 0 30px rgba(0,212,255,0.08),inset 0 1px 0 rgba(255,255,255,0.1);
+      transform:translateY(-2px);
     }
 
     .glass-chip {
-      background:
-        radial-gradient(ellipse at top, rgba(255,255,255,0.1), transparent 50%);
-      background-color: rgba(15, 20, 40, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow:
-        0 4px 16px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.08);
+      background-color: var(--glass-bg);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--glass-border);
+      box-shadow:0 4px 16px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.07);
     }
 
     .glass-input {
-      background: rgba(5, 10, 25, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        inset 0 2px 8px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.03);
-      transition: all 0.3s ease;
+      background: var(--input-bg);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border:1px solid var(--glass-border);
+      color: var(--text-primary);
+      box-shadow:inset 0 2px 8px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.03);
+      transition:all 0.3s ease;
     }
-
+    .glass-input::placeholder { color: var(--text-muted); opacity: 0.6; }
     .glass-input:focus {
-      border-color: rgba(0,212,255,0.5);
-      box-shadow:
-        inset 0 2px 8px rgba(0,0,0,0.4),
-        0 0 20px rgba(0,212,255,0.15),
-        0 0 40px rgba(0,212,255,0.05);
+      outline:none;
+      border-color:var(--accent-line);
+      box-shadow:inset 0 2px 8px rgba(0,0,0,0.3),0 0 20px rgba(0,212,255,0.12),0 0 40px rgba(0,212,255,0.05);
     }
 
     .glass-table {
-      background: rgba(8, 12, 25, 0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow:
-        0 15px 40px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.05);
+      background: var(--table-bg);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--glass-border);
+      box-shadow:0 15px 40px rgba(0,0,0,0.25),inset 0 1px 0 rgba(255,255,255,0.04);
+      transition: background 0.6s ease;
     }
+
+    /* ══════════════════════════════════════════════
+       THEME SELECTOR PANEL
+    ══════════════════════════════════════════════ */
+    .theme-panel {
+      position: fixed;
+      right: -260px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      transition: right 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: flex;
+      align-items: center;
+    }
+    .theme-panel.open { right: 0; }
+
+    .theme-toggle-tab {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-right: none;
+      border-radius: 12px 0 0 12px;
+      padding: 12px 8px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      writing-mode: vertical-rl;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+      user-select: none;
+    }
+
+    .theme-panel-inner {
+      width: 260px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px) saturate(200%);
+      border: 1px solid var(--glass-border);
+      border-right: none;
+      border-radius: 16px 0 0 16px;
+      padding: 20px;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.3);
+    }
+
+    .theme-btn {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      position: relative;
+      overflow: hidden;
+    }
+    .theme-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);
+      transition: left 0.5s;
+    }
+    .theme-btn:hover::before { left: 100%; }
+    .theme-btn:hover { transform: translateX(-4px); }
+    .theme-btn.active { border-color: var(--accent-line); }
+
+    .theme-btn-cosmic {
+      background: linear-gradient(135deg,rgba(229,9,20,0.2),rgba(0,212,255,0.2));
+      color: #e2e8f0;
+    }
+    .theme-btn-forest {
+      background: linear-gradient(135deg,rgba(34,197,94,0.2),rgba(16,185,129,0.2));
+      color: #d1fae5;
+    }
+    .theme-btn-sunset {
+      background: linear-gradient(135deg,rgba(251,146,60,0.2),rgba(239,68,68,0.2));
+      color: #fff7ed;
+    }
+    .theme-btn-arctic {
+      background: linear-gradient(135deg,rgba(56,189,248,0.15),rgba(99,102,241,0.15));
+      color: #0f172a;
+    }
+
+    .theme-dot {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    /* ══════════════════════════════════════════════
+       THEME-SPECIFIC TEXT / ACCENT OVERRIDES
+    ══════════════════════════════════════════════ */
+    [data-theme="forest"] .text-neon-blue,
+    [data-theme="forest"] .text-gradient { color: #22c55e !important; }
+    [data-theme="forest"] .text-gradient-brand {
+      background: linear-gradient(135deg,#4ade80,#22c55e,#86efac,#22c55e);
+      background-size:200% 200%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    [data-theme="forest"] .status-dot {
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+    }
+
+    [data-theme="sunset"] .text-neon-blue,
+    [data-theme="sunset"] .text-gradient { color: #f97316 !important; }
+    [data-theme="sunset"] .text-gradient-brand {
+      background: linear-gradient(135deg,#fb923c,#f97316,#fbbf24,#f97316);
+      background-size:200% 200%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    [data-theme="sunset"] .status-dot {
+      background: #f97316;
+      box-shadow: 0 0 10px rgba(249,115,22,0.8);
+    }
+
+    [data-theme="arctic"] .text-neon-blue,
+    [data-theme="arctic"] .text-gradient { color: #0ea5e9 !important; }
+    [data-theme="arctic"] .text-gradient-brand {
+      background: linear-gradient(135deg,#0ea5e9,#6366f1,#8b5cf6,#0ea5e9);
+      background-size:200% 200%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    [data-theme="arctic"] .status-dot {
+      background: #0ea5e9;
+      box-shadow: 0 0 10px rgba(14,165,233,0.8);
+    }
+    [data-theme="arctic"] .text-slate-300,
+    [data-theme="arctic"] .text-slate-400 { color: #475569 !important; }
+    [data-theme="arctic"] .text-slate-100,
+    [data-theme="arctic"] .text-slate-200 { color: #0f172a !important; }
+    [data-theme="arctic"] .data-table tbody td { color: #1e293b; }
+    [data-theme="arctic"] .data-table thead th { color: #64748b; }
+    [data-theme="arctic"] .totals-row td { color: #334155; }
 
     /* ══════════════════════════════════════════════
        NEON BUTTONS
     ══════════════════════════════════════════════ */
     .btn-neon {
-      position: relative;
-      overflow: hidden;
-      border-radius: 9999px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position:relative;overflow:hidden;border-radius:9999px;
+      font-weight:600;letter-spacing:0.02em;
+      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-
     .btn-neon::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-      transition: left 0.5s ease;
+      content:'';position:absolute;top:0;left:-100%;
+      width:100%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+      transition:left 0.5s ease;
     }
-
-    .btn-neon:hover::before {
-      left: 100%;
-    }
-
+    .btn-neon:hover::before { left:100%; }
     .btn-neon::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 9999px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      z-index: -1;
+      content:'';position:absolute;inset:-2px;
+      border-radius:9999px;opacity:0;
+      transition:opacity 0.3s;z-index:-1;
     }
 
-    .btn-brand { background: linear-gradient(135deg, #e50914, #ff4d5a); color: white; }
-    .btn-brand::after { background: linear-gradient(135deg, #e50914, #ff4d5a); filter: blur(15px); }
-    .btn-brand:hover::after { opacity: 0.5; }
-    .btn-brand:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(229,9,20,0.3); }
+    .btn-brand{background:linear-gradient(135deg,#e50914,#ff4d5a);color:white;}
+    .btn-brand::after{background:linear-gradient(135deg,#e50914,#ff4d5a);filter:blur(15px);}
+    .btn-brand:hover::after{opacity:0.5;}
+    .btn-brand:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 30px rgba(229,9,20,0.35);}
 
-    .btn-accent { background: linear-gradient(135deg, #16a34a, #4ade80); color: white; }
-    .btn-accent::after { background: linear-gradient(135deg, #16a34a, #4ade80); filter: blur(15px); }
-    .btn-accent:hover::after { opacity: 0.5; }
-    .btn-accent:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(34,197,94,0.3); }
+    .btn-accent{background:linear-gradient(135deg,#16a34a,#4ade80);color:white;}
+    .btn-accent::after{background:linear-gradient(135deg,#16a34a,#4ade80);filter:blur(15px);}
+    .btn-accent:hover::after{opacity:0.5;}
+    .btn-accent:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 30px rgba(34,197,94,0.35);}
 
-    .btn-sky { background: linear-gradient(135deg, #0284c7, #38bdf8); color: white; }
-    .btn-sky::after { background: linear-gradient(135deg, #0284c7, #38bdf8); filter: blur(15px); }
-    .btn-sky:hover::after { opacity: 0.5; }
-    .btn-sky:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(56,189,248,0.3); }
+    .btn-sky{background:linear-gradient(135deg,#0284c7,#38bdf8);color:white;}
+    .btn-sky::after{background:linear-gradient(135deg,#0284c7,#38bdf8);filter:blur(15px);}
+    .btn-sky:hover::after{opacity:0.5;}
+    .btn-sky:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 30px rgba(56,189,248,0.35);}
 
-    .btn-danger { background: linear-gradient(135deg, #dc2626, #f87171); color: white; }
-    .btn-danger::after { background: linear-gradient(135deg, #dc2626, #f87171); filter: blur(15px); }
-    .btn-danger:hover::after { opacity: 0.5; }
-    .btn-danger:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(220,38,38,0.3); }
+    .btn-danger{background:linear-gradient(135deg,#dc2626,#f87171);color:white;}
+    .btn-danger::after{background:linear-gradient(135deg,#dc2626,#f87171);filter:blur(15px);}
+    .btn-danger:hover::after{opacity:0.5;}
+    .btn-danger:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 30px rgba(220,38,38,0.35);}
 
-    .btn-ghost {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #e2e8f0;
-      backdrop-filter: blur(10px);
+    .btn-ghost{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      color:var(--text-primary);
+      backdrop-filter:blur(10px);
     }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    .btn-ghost:hover{
+      background:rgba(255,255,255,0.1);
+      border-color:rgba(255,255,255,0.2);
+      transform:translateY(-2px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.25);
     }
-
-    .btn-cloud {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(15px);
-      position: relative;
-      overflow: hidden;
+    [data-theme="arctic"] .btn-ghost{
+      background:rgba(0,0,0,0.05);
+      border-color:rgba(0,0,0,0.12);
+      color:#0f172a;
     }
-    .btn-cloud::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-      transition: left 0.6s ease;
-    }
-    .btn-cloud:hover::before { left: 100%; }
-    .btn-cloud:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.15);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    [data-theme="arctic"] .btn-ghost:hover{
+      background:rgba(0,0,0,0.08);
+      border-color:rgba(0,0,0,0.2);
     }
 
-    /* Active press effect */
-    .btn-neon:active,
-    .btn-cloud:active,
-    .btn-ghost:active {
-      transform: translateY(0) scale(0.98) !important;
-      transition-duration: 0.1s;
+    .btn-cloud{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(15px);
+      position:relative;overflow:hidden;
+      color: var(--text-primary);
     }
+    .btn-cloud::before{
+      content:'';position:absolute;top:0;left:-100%;
+      width:100%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+      transition:left 0.6s ease;
+    }
+    .btn-cloud:hover::before{left:100%;}
+    .btn-cloud:hover{
+      background:rgba(255,255,255,0.08);
+      border-color:rgba(255,255,255,0.15);
+      transform:translateY(-2px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    }
+    [data-theme="arctic"] .btn-cloud{
+      background:rgba(0,0,0,0.04);
+      border-color:rgba(0,0,0,0.1);
+    }
+    [data-theme="arctic"] .btn-cloud:hover{
+      background:rgba(0,0,0,0.07);
+      border-color:rgba(0,0,0,0.15);
+    }
+
+    .btn-neon:active,.btn-cloud:active,.btn-ghost:active{
+      transform:translateY(0) scale(0.98)!important;
+      transition-duration:0.1s;
+    }
+
+    .pill-button{border-radius:9999px;}
 
     /* ══════════════════════════════════════════════
-       PILL BUTTON (legacy compat)
+       DIVIDERS / EDITING / TABLE / SCROLLBAR
     ══════════════════════════════════════════════ */
-    .pill-button { border-radius: 9999px; }
+    .divider-glow{
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--glass-border),transparent);
+      border:none;margin:16px 0;
+    }
+
+    .editing{
+      background-color:rgba(234,179,8,0.2)!important;
+      border:1px solid rgba(234,179,8,0.5)!important;
+      border-radius:6px;outline:none;
+      animation:editPulse 2s ease-in-out infinite;
+    }
+    @keyframes editPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(234,179,8,0.3);}
+      50%{box-shadow:0 0 12px 2px rgba(234,179,8,0.25);}
+    }
+
+    .data-table{border-collapse:separate;border-spacing:0;}
+    .data-table thead th{
+      background:rgba(255,255,255,0.04);
+      border-bottom:1px solid var(--glass-border);
+      font-size:10px;font-weight:700;
+      text-transform:uppercase;letter-spacing:0.08em;
+      color:var(--text-muted);
+      padding:10px 8px;
+      position:sticky;top:0;z-index:5;
+      backdrop-filter:blur(10px);
+    }
+    [data-theme="arctic"] .data-table thead th{background:rgba(0,0,0,0.03);}
+    .data-table tbody td{
+      border-bottom:1px solid var(--glass-border);
+      padding:8px;font-size:12px;
+      transition:background 0.2s;
+    }
+    .data-table tbody tr:hover td{background:rgba(255,255,255,0.03);}
+    [data-theme="arctic"] .data-table tbody tr:hover td{background:rgba(0,0,0,0.025);}
+    .data-table tbody tr:last-child td{border-bottom:none;}
+
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+    ::-webkit-scrollbar-thumb{background:var(--glass-border);border-radius:10px;}
+    ::-webkit-scrollbar-thumb:hover{background:var(--accent-line);opacity:0.5;}
 
     /* ══════════════════════════════════════════════
-       SEPARATOR / DIVIDERS
+       ANIMATED TEXT
     ══════════════════════════════════════════════ */
-    .divider-glow {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      border: none;
-      margin: 16px 0;
+    .text-gradient{
+      background:linear-gradient(135deg,#fff,#94a3b8,#00d4ff,#a855f7,#fff);
+      background-size:300% 300%;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:gradientShift 8s ease-in-out infinite;
+    }
+    .text-gradient-brand{
+      background:linear-gradient(135deg,#ff4d5a,#e50914,#ff7eb3,#e50914);
+      background-size:200% 200%;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:gradientShift 6s ease-in-out infinite;
+    }
+    @keyframes gradientShift{
+      0%,100%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
     }
 
-    /* ══════════════════════════════════════════════
-       EDITING HIGHLIGHT
-    ══════════════════════════════════════════════ */
-    .editing {
-      background-color: rgba(234, 179, 8, 0.2) !important;
-      border: 1px solid rgba(234, 179, 8, 0.4) !important;
-      border-radius: 6px;
-      outline: none;
-      animation: editPulse 2s ease-in-out infinite;
+    .status-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 10px rgba(34,197,94,0.6);
+      animation:statusPulse 2s ease-in-out infinite;
+    }
+    @keyframes statusPulse{
+      0%,100%{opacity:1;box-shadow:0 0 10px rgba(34,197,94,0.6);}
+      50%{opacity:0.6;box-shadow:0 0 20px rgba(34,197,94,0.9);}
     }
 
-    @keyframes editPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(234,179,8,0.3); }
-      50% { box-shadow: 0 0 12px 2px rgba(234,179,8,0.2); }
+    .chip-glow{position:relative;overflow:hidden;}
+    .chip-glow::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+      animation:shimmer 3s ease-in-out infinite;background-size:200% 100%;
     }
-
-    /* ══════════════════════════════════════════════
-       TABLE STYLES
-    ══════════════════════════════════════════════ */
-    .data-table {
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    .data-table thead th {
-      background: rgba(255,255,255,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.5);
-      padding: 10px 8px;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      backdrop-filter: blur(10px);
-    }
-
-    .data-table tbody td {
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      padding: 8px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.8);
-      transition: background 0.2s;
-    }
-
-    .data-table tbody tr:hover td {
-      background: rgba(255,255,255,0.03);
-    }
-
-    .data-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* ══════════════════════════════════════════════
-       SCROLLBAR
-    ══════════════════════════════════════════════ */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-
-    /* ══════════════════════════════════════════════
-       ANIMATED GRADIENT TEXT
-    ══════════════════════════════════════════════ */
-    .text-gradient {
-      background: linear-gradient(135deg, #fff, #94a3b8, #00d4ff, #a855f7, #fff);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 8s ease-in-out infinite;
-    }
-
-    .text-gradient-brand {
-      background: linear-gradient(135deg, #ff4d5a, #e50914, #ff7eb3, #e50914);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 6s ease-in-out infinite;
-    }
-
-    /* ══════════════════════════════════════════════
-       STATUS DOT
-    ══════════════════════════════════════════════ */
-    .status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34,197,94,0.6), 0 0 20px rgba(34,197,94,0.3);
-      animation: statusPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(34,197,94,0.6); }
-      50% { opacity: 0.6; box-shadow: 0 0 20px rgba(34,197,94,0.8); }
-    }
-
-    /* ══════════════════════════════════════════════
-       LABEL CHIP
-    ══════════════════════════════════════════════ */
-    .chip-glow {
-      position: relative;
-      overflow: hidden;
-    }
-    .chip-glow::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      animation: shimmer 3s ease-in-out infinite;
-      background-size: 200% 100%;
+    @keyframes shimmer{
+      0%{background-position:-200% 0;}
+      100%{background-position:200% 0;}
     }
 
     /* ══════════════════════════════════════════════
        MODAL
     ══════════════════════════════════════════════ */
-    .modal-backdrop {
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .modal-backdrop{
+      background:rgba(0,0,0,0.65);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     }
-
-    .modal-glass {
-      background:
-        radial-gradient(ellipse at top, rgba(255,255,255,0.06), transparent 60%);
-      background-color: rgba(10, 15, 30, 0.9);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.08);
+    .modal-glass{
+      background-color:var(--glass-bg);
+      backdrop-filter:blur(40px) saturate(180%);
+      -webkit-backdrop-filter:blur(40px) saturate(180%);
+      border:1px solid var(--glass-border);
+      box-shadow:0 30px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.07);
     }
 
     /* ══════════════════════════════════════════════
-       STAGGER ANIMATION CHILDREN
+       TOTALS ROW
     ══════════════════════════════════════════════ */
-    .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
-    .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-    .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
-    .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
-    .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
-    .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
-    .stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
-    .stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
-
-    /* ══════════════════════════════════════════════
-       TOTALS TABLE
-    ══════════════════════════════════════════════ */
-    .totals-row {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
+    .totals-row{
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--glass-border);
     }
-    .totals-row td {
-      font-weight: 600;
-      font-size: 11px;
-      color: rgba(255,255,255,0.7);
-      padding: 8px 10px;
+    .totals-row td{
+      font-weight:600;font-size:11px;
+      color:var(--text-muted);padding:8px 10px;
     }
 
     /* ══════════════════════════════════════════════
-       PRINT STYLES
+       ANIMATIONS
     ══════════════════════════════════════════════ */
-    @media print {
-      body, html {
-        background: white !important;
-        color: black !important;
-      }
-      .bg-cosmos, .bg-grid, .bg-noise, .particles,
-      header,
-      #information,
-      #eraseBox,
-      #listModal,
-      #printBtn,
-      #muhil,
-      #qwe,
-      #eraseBtn,
-      #eraseForm,
-      #eraseSubmit,
-      #cloudButtons,
-      #loginBtn,
-      #logoutBtn,
-      #loginBtnMobile,
-      #logoutBtnMobile,
-      #themeToggle,
-      .back-btn-wrap {
-        display: none !important;
-      }
-      #groups {
-        max-width: 100% !important;
-      }
-      table {
-        width: 100% !important;
-        background: white !important;
-        color: black !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        border: 1px solid #cbd5e1 !important;
-      }
-      thead {
-        background: #f1f5f9 !important;
-        color: #020617 !important;
-      }
-      .totalsTable, .totals-row {
-        page-break-inside: avoid;
-      }
-      h2 {
-        page-break-after: avoid;
-        color: black !important;
-      }
+    .animate-slide-up{animation:slideUp 0.6s cubic-bezier(0.16,1,0.3,1) both;}
+    .animate-slide-down{animation:slideDown 0.5s cubic-bezier(0.16,1,0.3,1) both;}
+    .animate-fade-in{animation:fadeIn 0.5s ease-out both;}
+    .animate-scale-in{animation:scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) both;}
+    @keyframes slideUp{0%{opacity:0;transform:translateY(30px) scale(0.97);}100%{opacity:1;transform:translateY(0) scale(1);}}
+    @keyframes slideDown{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{0%{opacity:0;}100%{opacity:1;}}
+    @keyframes scaleIn{0%{opacity:0;transform:scale(0.9);}100%{opacity:1;transform:scale(1);}}
+
+    /* ══════════════════════════════════════════════
+       THEME TRANSITION FLASH
+    ══════════════════════════════════════════════ */
+    .theme-transition * {
+      transition: background-color 0.5s ease, border-color 0.5s ease, color 0.3s ease !important;
     }
 
     /* ══════════════════════════════════════════════
-       RESPONSIVE HELPERS
+       PRINT
     ══════════════════════════════════════════════ */
-    @media (max-width: 640px) {
-      .data-table thead th,
-      .data-table tbody td {
-        padding: 6px 4px;
-        font-size: 10px;
-      }
-      .totals-row td {
-        font-size: 9px;
-        padding: 6px 4px;
-      }
+    @media print{
+      body,html{background:white!important;color:black!important;}
+      .bg-cosmos,.bg-grid,.bg-noise,.particles,
+      header,#information,#eraseBox,#listModal,
+      #printBtn,#muhil,#qwe,#eraseBtn,#eraseForm,
+      #eraseSubmit,#cloudButtons,#loginBtn,#logoutBtn,
+      #loginBtnMobile,#logoutBtnMobile,#themeToggle,
+      .back-btn-wrap,.theme-panel{display:none!important;}
+      #groups{max-width:100%!important;}
+      table{width:100%!important;background:white!important;color:black!important;
+        box-shadow:none!important;border-radius:0!important;border:1px solid #cbd5e1!important;}
+      thead{background:#f1f5f9!important;color:#020617!important;}
+      .totalsTable,.totals-row{page-break-inside:avoid;}
+      h2{page-break-after:avoid;color:black!important;}
     }
 
     /* ══════════════════════════════════════════════
-       FOCUS ACCESSIBILITY
+       RESPONSIVE
     ══════════════════════════════════════════════ */
-    *:focus-visible {
-      outline: 2px solid rgba(0,212,255,0.6);
-      outline-offset: 2px;
+    @media(max-width:640px){
+      .data-table thead th,.data-table tbody td{padding:6px 4px;font-size:10px;}
+      .totals-row td{font-size:9px;padding:6px 4px;}
+      .theme-panel-inner{width:220px;}
     }
 
-    /* ══════════════════════════════════════════════
-       REDUCED MOTION
-    ══════════════════════════════════════════════ */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+    *:focus-visible{outline:2px solid var(--accent-line);outline-offset:2px;}
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;}
     }
   </style>
 </head>
-<body class="min-h-full text-slate-100 antialiased font-sans relative z-10">
+<body class="min-h-full antialiased font-sans relative z-10" data-theme="cosmic">
 
-  <!-- ═══════ COSMIC BACKGROUND LAYERS ═══════ -->
+  <!-- BACKGROUND -->
   <div class="bg-cosmos">
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
+    <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+    <div class="orb"></div><div class="orb"></div>
   </div>
   <div class="bg-grid"></div>
   <div class="bg-noise"></div>
   <div class="particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
     <div class="particle"></div>
   </div>
 
-  <!-- ═══════ HEADER ═══════ -->
+  <!-- ══════ THEME PANEL ══════ -->
+  <div class="theme-panel" id="themePanel">
+    <div class="theme-toggle-tab" id="themePanelTab" onclick="toggleThemePanel()">
+      <span id="themeTabIcon" style="font-size:18px;writing-mode:horizontal-tb;">🎨</span>
+      <span>THEME</span>
+    </div>
+    <div class="theme-panel-inner">
+      <p class="text-[10px] uppercase tracking-[0.2em] mb-4 font-bold" style="color:var(--text-muted)">Choose Theme</p>
+
+      <button class="theme-btn theme-btn-cosmic active" id="btn-cosmic" onclick="applyTheme('cosmic')">
+        <div class="theme-dot" style="background:linear-gradient(135deg,#e50914,#00d4ff);">🌌</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;">Cosmic</div>
+          <div style="font-size:10px;opacity:0.6;">Dark · Red & Cyan</div>
+        </div>
+      </button>
+
+      <button class="theme-btn theme-btn-forest" id="btn-forest" onclick="applyTheme('forest')">
+        <div class="theme-dot" style="background:linear-gradient(135deg,#16a34a,#34d399);">🌿</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;">Forest</div>
+          <div style="font-size:10px;opacity:0.6;">Dark · Emerald</div>
+        </div>
+      </button>
+
+      <button class="theme-btn theme-btn-sunset" id="btn-sunset" onclick="applyTheme('sunset')">
+        <div class="theme-dot" style="background:linear-gradient(135deg,#f97316,#fbbf24);">🌅</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;">Sunset</div>
+          <div style="font-size:10px;opacity:0.6;">Dark · Amber & Orange</div>
+        </div>
+      </button>
+
+      <button class="theme-btn theme-btn-arctic" id="btn-arctic" onclick="applyTheme('arctic')">
+        <div class="theme-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);">❄️</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#0f172a;">Arctic</div>
+          <div style="font-size:10px;opacity:0.6;color:#475569;">Light · Sky & Indigo</div>
+        </div>
+      </button>
+
+      <div class="divider-glow" style="margin-top:12px;"></div>
+      <p class="text-center" style="font-size:9px;color:var(--text-muted);letter-spacing:0.1em;">SHOP NO: 2605</p>
+    </div>
+  </div>
+
+  <!-- ══════ HEADER ══════ -->
   <header class="glass-header w-full sticky top-0 z-30 animate-slide-down">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
       <div class="flex items-center gap-3">
-        <!-- Back button -->
         <div class="back-btn-wrap">
-          <button
-            type="button"
-            onclick="window.location.href='index.html';"
-            class="btn-neon btn-ghost pill-button inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold"
-          >
+          <button type="button" onclick="window.location.href='index.html';"
+            class="btn-neon btn-ghost pill-button inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span class="hidden sm:inline">Back</span>
           </button>
         </div>
 
-        <!-- Logo -->
         <div class="relative group">
-          <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-neon-purple rounded-2xl blur opacity-40 group-hover:opacity-60 transition-opacity"></div>
-          <div class="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg ring-1 ring-white/10">
+          <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-purple-600 rounded-2xl blur opacity-40 group-hover:opacity-60 transition-opacity"></div>
+          <div class="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg ring-1 ring-white/10">
             <span class="text-sm font-black text-white">Ⓜ️</span>
           </div>
         </div>
 
         <div class="leading-tight">
           <div class="flex items-center gap-2">
-            <p class="text-[9px] uppercase tracking-[0.25em] text-slate-400 font-medium">Ultra Stock Console</p>
+            <p class="text-[9px] uppercase tracking-[0.25em] font-medium" style="color:var(--text-muted)">Ultra Stock Console</p>
             <div class="status-dot"></div>
           </div>
           <h1 class="text-lg sm:text-xl font-display font-bold tracking-tight text-gradient">
@@ -762,127 +808,75 @@
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3 text-[11px]">
-        <!-- Theme toggle -->
-        <button
-          type="button"
-          id="themeToggle"
-          class="btn-neon btn-ghost pill-button flex items-center gap-1.5 px-3 py-2 text-[11px]">
-          <span id="themeIcon" class="text-amber-300 text-sm">🌙</span>
-          <span id="themeLabel" class="hidden sm:inline-block text-slate-300 font-medium">Dark</span>
-        </button>
-
         <!-- Desktop user panel -->
         <div class="glass-chip hidden sm:flex items-center gap-3 px-3 py-2 rounded-2xl">
-          <div class="h-7 w-7 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-white/10 flex items-center justify-center text-[11px] font-bold text-slate-200" id="userAvatar">
-            ?
-          </div>
+          <div class="h-7 w-7 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-white/10 flex items-center justify-center text-[11px] font-bold" style="color:var(--text-primary);" id="userAvatar">?</div>
           <div class="flex flex-col leading-tight">
-            <span id="userStatus" class="max-w-[140px] truncate text-slate-200 text-[11px] font-medium">
-              Not Logged In
-            </span>
-            <span id="userHint" class="text-[9px] text-slate-500">
-              Tap login to connect
-            </span>
+            <span id="userStatus" class="max-w-[140px] truncate text-[11px] font-medium" style="color:var(--text-primary);">Not Logged In</span>
+            <span id="userHint" class="text-[9px]" style="color:var(--text-muted);">Tap login to connect</span>
           </div>
-          <button id="loginBtn"
-            type="button"
-            class="btn-neon btn-brand pill-button px-3 py-1.5 text-[11px] font-semibold">
-            Login
-          </button>
-          <button id="logoutBtn"
-            type="button"
-            style="display:none;"
-            class="btn-neon btn-ghost pill-button px-3 py-1.5 text-[11px] font-semibold">
-            Logout
-          </button>
+          <button id="loginBtn" type="button" class="btn-neon btn-brand pill-button px-3 py-1.5 text-[11px] font-semibold">Login</button>
+          <button id="logoutBtn" type="button" style="display:none;" class="btn-neon btn-ghost pill-button px-3 py-1.5 text-[11px] font-semibold">Logout</button>
         </div>
 
-        <!-- Mobile auth buttons -->
+        <!-- Mobile -->
         <div class="sm:hidden flex items-center gap-1">
-          <button id="loginBtnMobile"
-            type="button"
-            class="btn-neon btn-brand pill-button px-3 py-1.5 text-[11px] font-semibold">
-            Login
-          </button>
-          <button id="logoutBtnMobile"
-            type="button"
-            style="display:none;"
-            class="btn-neon btn-ghost pill-button px-3 py-1.5 text-[11px] font-semibold">
-            Logout
-          </button>
+          <button id="loginBtnMobile" type="button" class="btn-neon btn-brand pill-button px-3 py-1.5 text-[11px] font-semibold">Login</button>
+          <button id="logoutBtnMobile" type="button" style="display:none;" class="btn-neon btn-ghost pill-button px-3 py-1.5 text-[11px] font-semibold">Logout</button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ═══════ MAIN CONTENT ═══════ -->
+  <!-- ══════ MAIN ══════ -->
   <main class="w-full max-w-6xl mx-auto px-3 pb-12 sm:px-4 sm:pb-16 relative z-10">
 
-    <!-- Section header -->
     <section class="mt-6 mb-5 animate-slide-up">
       <div class="flex items-center justify-between gap-2">
         <div>
-          <p class="text-[10px] uppercase tracking-[0.25em] text-brand-400 font-semibold flex items-center gap-2">
-            <span class="inline-block w-6 h-px bg-gradient-to-r from-brand-500 to-transparent"></span>
+          <p class="text-[10px] uppercase tracking-[0.25em] font-semibold flex items-center gap-2" style="color:var(--accent-line);">
+            <span class="inline-block w-6 h-px" style="background:var(--accent-line);"></span>
             Today's Inventory
           </p>
-          <p class="mt-1.5 text-sm text-slate-300 font-medium">
+          <p class="mt-1.5 text-sm font-medium" style="color:var(--text-muted);">
             Powered by <span class="text-gradient-brand font-bold">Ⓜ Groups</span>
           </p>
         </div>
-        <span class="hidden sm:inline-flex items-center gap-2 glass-chip rounded-full px-4 py-1.5 text-[11px] text-slate-400">
-          <span class="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse"></span>
+        <span class="hidden sm:inline-flex items-center gap-2 glass-chip rounded-full px-4 py-1.5 text-[11px]" style="color:var(--text-muted);">
+          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:var(--accent-line);"></span>
           Ultra • 60fps UI
         </span>
       </div>
     </section>
 
-    <!-- ═══════ STOCK FORM ═══════ -->
+    <!-- ══════ FORM ══════ -->
     <section aria-labelledby="stock-form-title" class="mb-8 animate-slide-up" style="animation-delay:0.1s">
-      <form id="information"
-        class="glass-ultra rounded-3xl px-5 py-6 sm:px-7 sm:py-7 space-y-5">
+      <form id="information" class="glass-ultra rounded-3xl px-5 py-6 sm:px-7 sm:py-7 space-y-5">
 
-        <!-- Form header -->
         <div class="flex items-center justify-between gap-3">
           <div>
-            <h2 id="stock-form-title" class="text-base sm:text-lg font-display font-bold tracking-tight text-white flex items-center gap-2">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neon-blue"><path d="M12 5v14M5 12h14"/></svg>
+            <h2 id="stock-form-title" class="text-base sm:text-lg font-display font-bold tracking-tight flex items-center gap-2" style="color:var(--text-primary);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-line);"><path d="M12 5v14M5 12h14"/></svg>
               Add / Edit Stock
             </h2>
-            <p class="mt-0.5 text-[11px] text-slate-400">
-              Brand, size, balance &amp; price – optimized for speed.
-            </p>
+            <p class="mt-0.5 text-[11px]" style="color:var(--text-muted);">Brand, size, balance &amp; price – optimized for speed.</p>
           </div>
-          <span class="chip-glow pill-button border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-[10px] font-bold text-emerald-300 uppercase tracking-wider">
+          <span class="chip-glow pill-button border px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.1);color:#6ee7b7;">
             IMSF &amp; BEER
           </span>
         </div>
 
-        <!-- Input grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 stagger-children">
-          <div class="flex flex-col gap-1.5 animate-fade-in">
-            <label for="brand" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-              Brand name
-            </label>
-            <input
-              type="text"
-              id="brand"
-              placeholder="Search / type brand…"
-              autocomplete="off"
-              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition"
-              list="suggestions"
-            />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div class="flex flex-col gap-1.5">
+            <label for="brand" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">Brand name</label>
+            <input type="text" id="brand" placeholder="Search / type brand…" autocomplete="off"
+              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm" list="suggestions"/>
             <datalist id="suggestions"></datalist>
           </div>
 
-          <div class="flex flex-col gap-1.5 animate-fade-in">
-            <label for="ml" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-              ML
-            </label>
-            <select
-              id="ml"
-              name="ml"
-              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 focus:outline-none transition appearance-none cursor-pointer">
+          <div class="flex flex-col gap-1.5">
+            <label for="ml" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">ML</label>
+            <select id="ml" name="ml" class="glass-input block w-full rounded-2xl px-4 py-3 text-sm appearance-none cursor-pointer">
               <option value="">Select</option>
               <option value="180">180 ml</option>
               <option value="325">325 ml</option>
@@ -894,65 +888,32 @@
             </select>
           </div>
 
-          <div class="flex flex-col gap-1.5 animate-fade-in">
-            <label for="ob" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-              Opening Balance (OB)
-            </label>
-            <input
-              type="number"
-              id="ob"
-              name="ob"
-              placeholder="OB count"
-              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition" />
+          <div class="flex flex-col gap-1.5">
+            <label for="ob" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">Opening Balance (OB)</label>
+            <input type="number" id="ob" name="ob" placeholder="OB count" class="glass-input block w-full rounded-2xl px-4 py-3 text-sm"/>
           </div>
 
-          <div class="flex flex-col gap-1.5 animate-fade-in">
-            <label for="cb" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-              Closing Balance (CB)
-            </label>
-            <input
-              type="number"
-              id="cb"
-              name="cb"
-              placeholder="CB count"
-              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition" />
+          <div class="flex flex-col gap-1.5">
+            <label for="cb" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">Closing Balance (CB)</label>
+            <input type="number" id="cb" name="cb" placeholder="CB count" class="glass-input block w-full rounded-2xl px-4 py-3 text-sm"/>
           </div>
 
-          <div class="flex flex-col gap-1.5 sm:col-span-2 animate-fade-in">
-            <label for="price" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-              Price per bottle
-            </label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              placeholder="Auto-fills when brand + ML match"
-              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition" />
+          <div class="flex flex-col gap-1.5 sm:col-span-2">
+            <label for="price" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">Price per bottle</label>
+            <input type="number" id="price" name="price" placeholder="Auto-fills when brand + ML match"
+              class="glass-input block w-full rounded-2xl px-4 py-3 text-sm"/>
           </div>
         </div>
 
-        <!-- Action buttons -->
-        <div class="flex flex-col items-center gap-4 pt-3">
-          <div class="flex flex-wrap justify-center gap-3">
-            <input
-              type="reset"
-              value="✕  Clear"
-              class="cursor-pointer btn-neon btn-ghost pill-button px-6 py-3 text-sm font-semibold" />
-            <input
-              type="submit"
-              value="Submit  →"
-              class="cursor-pointer btn-neon btn-brand pill-button px-8 py-3 text-sm font-semibold" />
-          </div>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <input type="reset" value="✕  Clear" class="cursor-pointer btn-neon btn-ghost pill-button px-6 py-3 text-sm font-semibold"/>
+          <input type="submit" value="Submit  →" class="cursor-pointer btn-neon btn-brand pill-button px-8 py-3 text-sm font-semibold"/>
         </div>
 
         <div class="divider-glow"></div>
 
-        <!-- Edit buttons -->
         <div class="flex flex-wrap justify-center gap-3">
-          <button
-            type="button"
-            id="muhil"
-            class="muhil btn-neon btn-accent pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
+          <button type="button" id="muhil" class="muhil btn-neon btn-accent pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             Edit single row
           </button>
@@ -961,18 +922,11 @@
         <div class="divider-glow"></div>
 
         <div class="flex flex-wrap justify-center gap-3">
-          <button
-            type="button"
-            id="editAllBtn"
-            class="btn-neon btn-sky pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
+          <button type="button" id="editAllBtn" class="btn-neon btn-sky pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             Edit all tables
           </button>
-          <button
-            type="button"
-            id="saveAllBtn"
-            style="display:none;"
-            class="btn-neon btn-accent pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
+          <button type="button" id="saveAllBtn" style="display:none;" class="btn-neon btn-accent pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
             Save changes
           </button>
@@ -980,45 +934,26 @@
 
         <div class="divider-glow"></div>
 
-        <!-- Cloud buttons -->
         <div id="cloudButtons" class="flex flex-wrap justify-center gap-2">
-          <button
-            type="button"
-            id="nextDayBtn"
-            class="btn-cloud pill-button inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-amber-200">
-            <span class="text-base">☀️</span> Next Day
+          <button type="button" id="nextDayBtn" class="btn-cloud pill-button inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-amber-300">
+            <span>☀️</span> Next Day
           </button>
-          <button
-            type="button"
-            id="storeCloudBtn"
-            class="btn-cloud pill-button inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-sky-200">
-            <span class="text-base">☁️</span> Store to cloud
+          <button type="button" id="storeCloudBtn" class="btn-cloud pill-button inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-sky-300">
+            <span>☁️</span> Store to cloud
           </button>
-          <button
-            type="button"
-            id="listBtn"
-            class="btn-cloud pill-button inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-slate-200">
-            <span class="text-base">📂</span> Cloud lists
+          <button type="button" id="listBtn" class="btn-cloud pill-button inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-semibold" style="color:var(--text-primary);">
+            <span>📂</span> Cloud lists
           </button>
         </div>
 
         <div class="divider-glow"></div>
 
-        <!-- Danger zone -->
         <div class="flex flex-wrap justify-center gap-3">
-          <button
-            type="button"
-            id="qwe"
-            class="qwe btn-neon btn-danger pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold"
-            onclick="clearAll()">
+          <button type="button" id="qwe" class="qwe btn-neon btn-danger pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold" onclick="clearAll()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
             Clear all
           </button>
-          <button
-            type="button"
-            id="printBtn"
-            class="btn-neon btn-ghost pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold"
-            onclick="printReport()">
+          <button type="button" id="printBtn" class="btn-neon btn-ghost pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold" onclick="printReport()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
             Print / PDF
           </button>
@@ -1026,109 +961,108 @@
       </form>
     </section>
 
-    <!-- ═══════ TABLES ═══════ -->
-    <section id="groups" class="space-y-5 animate-slide-up" style="animation-delay:0.2s">
-    </section>
+    <!-- TABLES -->
+    <section id="groups" class="space-y-5 animate-slide-up" style="animation-delay:0.2s"></section>
 
-    <!-- ═══════ ERASE SECTION ═══════ -->
-    <section
-      id="eraseBox"
-      class="mt-8 w-full max-w-6xl mx-auto flex flex-col items-center gap-3 text-center animate-slide-up" style="animation-delay:0.3s">
-      <button
-        type="button"
-        id="eraseBtn"
-        class="btn-neon btn-danger pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
+    <!-- ERASE -->
+    <section id="eraseBox" class="mt-8 w-full flex flex-col items-center gap-3 text-center animate-slide-up" style="animation-delay:0.3s">
+      <button type="button" id="eraseBtn" class="btn-neon btn-danger pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 002-2V6a2 2 0 00-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>
         Erase row
       </button>
 
-      <div
-        id="eraseForm"
-        style="display:none;"
-        class="w-full max-w-md glass-card rounded-3xl px-5 py-5 space-y-4 animate-scale-in">
+      <div id="eraseForm" style="display:none;" class="w-full max-w-md glass-card rounded-3xl px-5 py-5 space-y-4 animate-scale-in">
         <div class="flex flex-col gap-1.5">
-          <label for="eraseTableNo" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-            Table no (1-8)
-          </label>
-          <input
-            type="number"
-            id="eraseTableNo"
-            min="1"
-            max="8"
-            placeholder="Table no"
-            class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition" />
+          <label for="eraseTableNo" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">Table no (1-8)</label>
+          <input type="number" id="eraseTableNo" min="1" max="8" placeholder="Table no" class="glass-input block w-full rounded-2xl px-4 py-3 text-sm"/>
         </div>
-
         <div class="flex flex-col gap-1.5">
-          <label for="eraseRowNo" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-            Row no
-          </label>
-          <input
-            type="number"
-            id="eraseRowNo"
-            min="1"
-            placeholder="Row no"
-            class="glass-input block w-full rounded-2xl px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none transition" />
+          <label for="eraseRowNo" class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted);">Row no</label>
+          <input type="number" id="eraseRowNo" min="1" placeholder="Row no" class="glass-input block w-full rounded-2xl px-4 py-3 text-sm"/>
         </div>
-
-        <button
-          type="button"
-          id="eraseSubmit"
-          class="btn-neon btn-accent pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold w-full">
+        <button type="button" id="eraseSubmit" class="btn-neon btn-accent pill-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold w-full">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Confirm erase
         </button>
       </div>
     </section>
 
-    <!-- ═══════ MODAL ═══════ -->
-    <div
-      id="listModal"
-      class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
-      <div
-        class="modal-glass w-[95%] max-w-lg rounded-3xl px-5 py-6 sm:px-7 sm:py-7 animate-scale-in">
+    <!-- MODAL -->
+    <div id="listModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
+      <div class="modal-glass w-[95%] max-w-lg rounded-3xl px-5 py-6 sm:px-7 sm:py-7 animate-scale-in">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg sm:text-xl font-display font-bold tracking-tight text-white flex items-center gap-2">
-            <span class="text-xl">📂</span>
-            Cloud Reports
+          <h2 class="text-lg sm:text-xl font-display font-bold tracking-tight flex items-center gap-2" style="color:var(--text-primary);">
+            <span>📂</span> Cloud Reports
           </h2>
-          <button
-            type="button"
-            onclick="document.getElementById('listModal').style.display='none'"
-            class="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition text-sm">
-            ✕
-          </button>
+          <button type="button" onclick="document.getElementById('listModal').style.display='none'"
+            class="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 transition text-sm" style="color:var(--text-muted);">✕</button>
         </div>
         <div class="divider-glow"></div>
-        <div
-          id="cloudDataList"
-          class="text-sm text-slate-300 space-y-3 max-h-[50vh] overflow-y-auto pr-1">
-          Loading...
-        </div>
+        <div id="cloudDataList" class="text-sm space-y-3 max-h-[50vh] overflow-y-auto pr-1" style="color:var(--text-muted);">Loading...</div>
         <div class="divider-glow"></div>
         <div class="flex justify-end">
-          <button
-            type="button"
-            onclick="document.getElementById('listModal').style.display='none'"
-            class="btn-neon btn-ghost pill-button px-5 py-2.5 text-sm font-semibold">
-            Close
-          </button>
+          <button type="button" onclick="document.getElementById('listModal').style.display='none'"
+            class="btn-neon btn-ghost pill-button px-5 py-2.5 text-sm font-semibold">Close</button>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- ═══════ FIREBASE ═══════ -->
+  <!-- FIREBASE -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // ══════════════════════════════════════════════
-    // PRICE LIST (unchanged)
-    // ══════════════════════════════════════════════
-    const PRICELIST = [
-{ brand: "Old king xxxx rum", ml: 180, price: 140 },
+  // ══════════════════════════════════════════════
+  // THEME SYSTEM
+  // ══════════════════════════════════════════════
+  let themePanelOpen = false;
+
+  function toggleThemePanel() {
+    themePanelOpen = !themePanelOpen;
+    document.getElementById('themePanel').classList.toggle('open', themePanelOpen);
+  }
+
+  function applyTheme(theme) {
+    const body = document.body;
+    body.classList.add('theme-transition');
+    body.setAttribute('data-theme', theme);
+
+    // Update active btn
+    ['cosmic','forest','sunset','arctic'].forEach(t => {
+      const b = document.getElementById('btn-' + t);
+      if (b) b.classList.toggle('active', t === theme);
+    });
+
+    // Theme tab icon
+    const icons = { cosmic:'🌌', forest:'🌿', sunset:'🌅', arctic:'❄️' };
+    document.getElementById('themeTabIcon').textContent = icons[theme] || '🎨';
+
+    try { localStorage.setItem('ui-theme', theme); } catch {}
+
+    setTimeout(() => body.classList.remove('theme-transition'), 600);
+
+    // Close panel after short delay
+    setTimeout(() => {
+      themePanelOpen = false;
+      document.getElementById('themePanel').classList.remove('open');
+    }, 800);
+  }
+
+  // Init theme
+  (function() {
+    let saved = null;
+    try { saved = localStorage.getItem('ui-theme'); } catch {}
+    const valid = ['cosmic','forest','sunset','arctic'];
+    applyTheme(valid.includes(saved) ? saved : 'cosmic');
+  })();
+
+  // ══════════════════════════════════════════════
+  // PRICE LIST
+  // ══════════════════════════════════════════════
+  const PRICELIST = [
+    { brand: "Old king xxxx rum", ml: 180, price: 140 },
         { brand: "Old king xxxx rum", ml: 375, price: 280 },
         { brand: "Old king xxxx rum", ml: 750, price: 560 },
         { brand: "Mens club dlx bdy", ml: 180, price:140 },
@@ -1593,6 +1527,8 @@
          {brand: "Sterren 8 pre quality strong beer", ml: 650, price:160},
          {brand: "spiel triple strong", ml: 650, price:180},
          {brand: "Fosters original pre strong beer", ml: 650, price:170},
+       {brand: "Fosters original pre strong beer", ml: 500, price:150},
+       {brand: "hunter refreshing st pre beer", ml:650,price:190},
          {brand: "chennai kings no.1 ss beer", ml: 650, price:180},
          {brand: "thunder bolt supreme strong", ml: 650, price:170},
          {brand: "Godfather the legendary ss beer", ml: 650, price:180},
@@ -1642,610 +1578,468 @@
          {brand: "Fosters strong beer", ml: 500, price:150},
   {brand: "mgm limon vodka", ml: 180, price:250},
   {brand: "mgm limon vodka", ml: 375, price:500},
-  {brand: "mgm limon vodka", ml: 650, price:1000},
+  {brand: "mgm limon vodka", ml: 750, price:1000},
       {brand: "Signout pre clasic bdy", ml: 180, price:330},
       {brand: "Signout pre clasic bdy", ml: 375, price:660},
-      {brand: "Signout pre clasic bdy", ml: 650, price:1320},
-    ];
+      {brand: "Signout pre clasic bdy", ml: 750, price:1320},
+     {brand: "vasco 1498 pre bdy", ml: 180, price:250},
+      {brand: "vasco 1498 pre bdy", ml: 375, price:500},
+      {brand: "vasco 1498 pre bdy", ml: 750, price:1000},
+  ];
 
-    function printReport() {
-      renderGroupedTables();
-      window.print();
-    }
+  // ══════════════════════════════════════════════
+  // CORE DATA LOGIC
+  // ══════════════════════════════════════════════
+  function printReport() { renderGroupedTables(); window.print(); }
 
-    const BRANDS = [...new Set(PRICELIST.map(x => x.brand))].sort();
+  const BRANDS = [...new Set(PRICELIST.map(x => x.brand))].sort();
+  const STORAGEKEY = "calcrecords";
+  let records = [];
 
-    const STORAGEKEY = "calcrecords";
-    let records = [];
+  function loadData() {
+    const saved = localStorage.getItem(STORAGEKEY);
+    if (saved) records = JSON.parse(saved);
+  }
+  function saveData() {
+    localStorage.setItem(STORAGEKEY, JSON.stringify(records));
+  }
 
-    function loadData() {
-      const saved = localStorage.getItem(STORAGEKEY);
-      if (saved) records = JSON.parse(saved);
-    }
-    function saveData() {
-      localStorage.setItem(STORAGEKEY, JSON.stringify(records));
-    ];
+  const form = document.getElementById("information");
+  const brandInput = document.getElementById("brand");
+  const mlSelect = document.getElementById("ml");
+  const priceInput = document.getElementById("price");
+  const datalist = document.getElementById("suggestions");
+  brandInput.setAttribute("list", "suggestions");
 
-    // ══════════════════════════════════════════════
-    // CORE LOGIC (preserved exactly)
-    // ══════════════════════════════════════════════
-
-    function printReport() {
-      renderGroupedTables();
-      window.print();
-    }
-
-    const BRANDS = [...new Set(PRICELIST.map(x => x.brand))].sort();
-    const STORAGEKEY = "calcrecords";
-    let records = [];
-
-    function loadData() {
-      const saved = localStorage.getItem(STORAGEKEY);
-      if (saved) records = JSON.parse(saved);
-    }
-    function saveData() {
-      localStorage.setItem(STORAGEKEY, JSON.stringify(records));
-    }
-
-    const form = document.getElementById("information");
-    const brandInput = document.getElementById("brand");
-    const mlSelect = document.getElementById("ml");
-    const priceInput = document.getElementById("price");
-    const datalist = document.getElementById("suggestions");
-
-    brandInput.setAttribute("list", "suggestions");
-
-    function renderBrandOptions(filterText) {
-      datalist.innerHTML = "";
-      const q = (filterText || "").toLowerCase();
-      BRANDS
-        .filter(b => b.toLowerCase().includes(q))
-        .slice(0, 30)
-        .forEach(b => {
-          const opt = document.createElement("option");
-          opt.value = b;
-          datalist.appendChild(opt);
-        });
-    }
-
-    function autoApplyPrice() {
-      const brand = brandInput.value.trim();
-      const ml = parseFloat(mlSelect.value || 0);
-      if (!brand || !ml) return;
-      const match = PRICELIST.find(x => x.brand === brand && x.ml === ml);
-      priceInput.value = match ? match.price : "";
-    }
-
-    brandInput.addEventListener("input", () => {
-      renderBrandOptions(brandInput.value);
-      autoApplyPrice();
+  function renderBrandOptions(filterText) {
+    datalist.innerHTML = "";
+    const q = (filterText || "").toLowerCase();
+    BRANDS.filter(b => b.toLowerCase().includes(q)).slice(0, 30).forEach(b => {
+      const opt = document.createElement("option");
+      opt.value = b;
+      datalist.appendChild(opt);
     });
-    brandInput.addEventListener("focus", () => renderBrandOptions(brandInput.value));
-    mlSelect.addEventListener("change", autoApplyPrice);
+  }
 
-    function money(n) { return (Number(n) || 0).toFixed(2); }
-    function sumField(arr, idx) { return arr.reduce((a, r) => a + (Number(r[idx]) || 0), 0); }
+  function autoApplyPrice() {
+    const brand = brandInput.value.trim();
+    const ml = parseFloat(mlSelect.value || 0);
+    if (!brand || !ml) return;
+    const match = PRICELIST.find(x => x.brand === brand && x.ml === ml);
+    priceInput.value = match ? match.price : "";
+  }
 
-    function compareByPriceThenBrand(a, b) {
-      const priceA = Number(a[5]);
-      const priceB = Number(b[5]);
-      if (priceA !== priceB) return priceA - priceB;
-      return (a[0] || "").toLowerCase().localeCompare((b[0] || "").toLowerCase());
-    }
-    function compareObjByPriceThenBrand(x, y) {
-      const ra = x.rec || x.r;
-      const rb = y.rec || y.r;
-      return compareByPriceThenBrand(ra, rb);
-    }
+  brandInput.addEventListener("input", () => { renderBrandOptions(brandInput.value); autoApplyPrice(); });
+  brandInput.addEventListener("focus", () => renderBrandOptions(brandInput.value));
+  mlSelect.addEventListener("change", autoApplyPrice);
 
-    const GROUPS = [
-      { key: "180_140",   title: "Table 1: 180 ml (Price ≤ 140)", filter: r => r[1] === 180 && r[5] <= 140 },
-      { key: "180_170",   title: "Table 2: 180 ml (Price = 170)",  filter: r => r[1] === 180 && r[5] === 170 },
-      { key: "180_gt200", title: "Table 3: 180 ml (Price ≥ 200)", filter: r => r[1] === 180 && r[5] >= 200 },
-      { key: "375",  title: "Table 4: 375 ml",  filter: r => r[1] === 375 },
-      { key: "750",  title: "Table 5: 750 ml",  filter: r => r[1] === 750 },
-      { key: "1000", title: "Table 6: 1000 ml", filter: r => r[1] === 1000 },
-      { key: "650",  title: "Table 7: 650 ml",  filter: r => r[1] === 650 },
-      { key: "500",  title: "Table 8: 500 ml",  filter: r => r[1] === 500 }
-    ];
+  function money(n) { return (Number(n) || 0).toFixed(2); }
+  function sumField(arr, idx) { return arr.reduce((a, r) => a + (Number(r[idx]) || 0), 0); }
 
-    // ══════════════════════════════════════════════
-    // RENDER TABLES (ultra glass style)
-    // ══════════════════════════════════════════════
-    function renderGroupedTables() {
-      const host = document.getElementById("groups");
-      host.innerHTML = "";
+  function compareByPriceThenBrand(a, b) {
+    if (Number(a[5]) !== Number(b[5])) return Number(a[5]) - Number(b[5]);
+    return (a[0]||"").toLowerCase().localeCompare((b[0]||"").toLowerCase());
+  }
+  function compareObjByPriceThenBrand(x, y) {
+    return compareByPriceThenBrand(x.rec || x.r, y.rec || y.r);
+  }
 
-      let t9OB = 0, t9CB = 0, t9Sales = 0, t9SV = 0, t9CBV = 0;
-      let t10OB = 0, t10CB = 0, t10Sales = 0, t10SV = 0, t10CBV = 0;
+  const GROUPS = [
+    { key:"180_140",   title:"Table 1: 180 ml (Price ≤ 140)", filter: r => r[1]===180 && r[5]<=140 },
+    { key:"180_170",   title:"Table 2: 180 ml (Price = 170)", filter: r => r[1]===180 && r[5]===170 },
+    { key:"180_gt200", title:"Table 3: 180 ml (Price ≥ 200)", filter: r => r[1]===180 && r[5]>=200 },
+    { key:"375",  title:"Table 4: 375 ml",  filter: r => r[1]===375 },
+    { key:"750",  title:"Table 5: 750 ml",  filter: r => r[1]===750 },
+    { key:"1000", title:"Table 6: 1000 ml", filter: r => r[1]===1000 },
+    { key:"650",  title:"Table 7: 650 ml",  filter: r => r[1]===650 },
+    { key:"500",  title:"Table 8: 500 ml",  filter: r => r[1]===500 },
+  ];
 
-      GROUPS.forEach((g, idx) => {
-        const rows = records.filter(g.filter).slice().sort(compareByPriceThenBrand);
+  // ══════════════════════════════════════════════
+  // RENDER TABLES
+  // ══════════════════════════════════════════════
+  function renderGroupedTables() {
+    const host = document.getElementById("groups");
+    host.innerHTML = "";
+    let t9OB=0,t9CB=0,t9Sales=0,t9SV=0,t9CBV=0;
+    let t10OB=0,t10CB=0,t10Sales=0,t10SV=0,t10CBV=0;
 
-        const totalOB = sumField(rows, 2);
-        const totalCB = sumField(rows, 3);
-        const totalSales = sumField(rows, 4);
-        const totalSV = sumField(rows, 6);
-        const totalCBV = sumField(rows, 7);
+    GROUPS.forEach((g, idx) => {
+      const rows = records.filter(g.filter).slice().sort(compareByPriceThenBrand);
+      const totalOB=sumField(rows,2), totalCB=sumField(rows,3),
+            totalSales=sumField(rows,4), totalSV=sumField(rows,6), totalCBV=sumField(rows,7);
 
-        if (idx <= 5) { t9OB += totalOB; t9CB += totalCB; t9Sales += totalSales; t9SV += totalSV; t9CBV += totalCBV; }
-        if (idx >= 6) { t10OB += totalOB; t10CB += totalCB; t10Sales += totalSales; t10SV += totalSV; t10CBV += totalCBV; }
+      if (idx<=5) { t9OB+=totalOB;t9CB+=totalCB;t9Sales+=totalSales;t9SV+=totalSV;t9CBV+=totalCBV; }
+      if (idx>=6) { t10OB+=totalOB;t10CB+=totalCB;t10Sales+=totalSales;t10SV+=totalSV;t10CBV+=totalCBV; }
 
-        // Section wrapper
-        const section = document.createElement("div");
-        section.className = "animate-slide-up";
-        section.style.animationDelay = (0.05 * idx) + "s";
+      const section = document.createElement("div");
+      section.className = "animate-slide-up";
+      section.style.animationDelay = (0.05*idx)+"s";
 
-        // Title
-        const title = document.createElement("h2");
-        title.className = "groupTitle text-xs font-display font-bold tracking-tight text-slate-300 mb-2 flex items-center gap-2";
-        title.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>${g.title}`;
-        section.appendChild(title);
+      const title = document.createElement("h2");
+      title.className = "groupTitle text-xs font-display font-bold tracking-tight mb-2 flex items-center gap-2";
+      title.style.color = "var(--text-muted)";
+      title.innerHTML = `<span class="inline-block w-2 h-2 rounded-full animate-pulse" style="background:var(--accent-line);"></span>${g.title}`;
+      section.appendChild(title);
 
-        // Table wrapper
-        const tableWrap = document.createElement("div");
-        tableWrap.className = "glass-table rounded-2xl overflow-hidden overflow-x-auto mb-1";
+      const tableWrap = document.createElement("div");
+      tableWrap.className = "glass-table rounded-2xl overflow-hidden overflow-x-auto mb-1";
 
-        const t = document.createElement("table");
-        t.className = "data-table w-full text-left";
-        t.innerHTML = `
-          <thead>
+      const t = document.createElement("table");
+      t.className = "data-table w-full text-left";
+      t.innerHTML = `
+        <thead><tr>
+          <th class="w-8">#</th><th>Brand</th><th class="w-14">ML</th>
+          <th class="w-12">OB</th><th class="w-12">CB</th><th class="w-14">Sales</th>
+          <th class="w-14">Price</th><th class="w-20">Sales Val</th><th class="w-20">CB Val</th>
+        </tr></thead>
+        <tbody>${rows.length===0
+          ? `<tr><td colspan="9" class="text-center py-6 text-xs" style="color:var(--text-muted);">No records</td></tr>`
+          : rows.map((r,i) => `
             <tr>
-              <th class="w-10">#</th>
-              <th>Brand</th>
-              <th class="w-14">ML</th>
-              <th class="w-12">OB</th>
-              <th class="w-12">CB</th>
-              <th class="w-14">Sales</th>
-              <th class="w-14">Price</th>
-              <th class="w-20">Sales Val</th>
-              <th class="w-20">CB Val</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rows.length === 0
-              ? `<tr><td colspan="9" class="text-center text-slate-600 py-6 text-xs">No records</td></tr>`
-              : rows.map((r, i) => `
-                <tr>
-                  <td class="text-slate-500 font-mono text-[10px]">${i + 1}</td>
-                  <td class="font-medium text-slate-200">${r[0]}</td>
-                  <td class="text-slate-400">${r[1]}</td>
-                  <td class="text-sky-300 font-semibold">${r[2]}</td>
-                  <td class="text-amber-300 font-semibold">${r[3]}</td>
-                  <td class="text-emerald-300 font-semibold">${r[4]}</td>
-                  <td class="text-slate-300">₹${r[5]}</td>
-                  <td class="text-emerald-200 font-mono text-[11px]">₹${money(r[6])}</td>
-                  <td class="text-amber-200 font-mono text-[11px]">₹${money(r[7])}</td>
-                </tr>
-              `).join("")
-            }
-          </tbody>
-        `;
-        tableWrap.appendChild(t);
-        section.appendChild(tableWrap);
+              <td class="font-mono text-[10px]" style="color:var(--text-muted);">${i+1}</td>
+              <td class="font-medium" style="color:var(--text-primary);">${r[0]}</td>
+              <td style="color:var(--text-muted);">${r[1]}</td>
+              <td class="text-sky-300 font-semibold">${r[2]}</td>
+              <td class="text-amber-300 font-semibold">${r[3]}</td>
+              <td class="text-emerald-300 font-semibold">${r[4]}</td>
+              <td style="color:var(--text-muted);">₹${r[5]}</td>
+              <td class="text-emerald-200 font-mono text-[11px]">₹${money(r[6])}</td>
+              <td class="text-amber-200 font-mono text-[11px]">₹${money(r[7])}</td>
+            </tr>`).join("")
+        }</tbody>`;
+      tableWrap.appendChild(t);
+      section.appendChild(tableWrap);
 
-        // Totals
-        const totals = document.createElement("div");
-        totals.className = "totals-row totalsTable rounded-xl overflow-x-auto mb-4";
-        const tt = document.createElement("table");
-        tt.className = "w-full";
-        tt.innerHTML = `
-          <tr>
-            <td>OB: <span class="text-sky-300">${money(totalOB)}</span></td>
-            <td>CB: <span class="text-amber-300">${money(totalCB)}</span></td>
-            <td>Sales: <span class="text-emerald-300">${money(totalSales)}</span></td>
-            <td>SV: <span class="text-emerald-200">₹${money(totalSV)}</span></td>
-            <td>CBV: <span class="text-amber-200">₹${money(totalCBV)}</span></td>
-          </tr>
-        `;
-        totals.appendChild(tt);
-        section.appendChild(totals);
-
-        host.appendChild(section);
-      });
-
-      // Summary tables function
-      function addSummary(label, ob, cb, sales, sv, cbv, colorClass) {
-        const wrap = document.createElement("div");
-        wrap.className = "animate-slide-up";
-
-        const title = document.createElement("h2");
-        title.className = `groupTitle text-sm font-display font-bold tracking-tight ${colorClass} mt-5 mb-2 flex items-center gap-2`;
-        title.innerHTML = `<span class="inline-block w-3 h-0.5 rounded bg-current"></span>${label}`;
-        wrap.appendChild(title);
-
-        const totals = document.createElement("div");
-        totals.className = "totals-row totalsTable rounded-xl overflow-x-auto";
-        const tt = document.createElement("table");
-        tt.className = "w-full";
-        tt.innerHTML = `
-          <tr>
-            <td>OB: <span class="text-sky-300">${money(ob)}</span></td>
-            <td>CB: <span class="text-amber-300">${money(cb)}</span></td>
-            <td>Sales: <span class="text-emerald-300">${money(sales)}</span></td>
-            <td>SV: <span class="text-emerald-200">₹${money(sv)}</span></td>
-            <td>CBV: <span class="text-amber-200">₹${money(cbv)}</span></td>
-          </tr>
-        `;
-        totals.appendChild(tt);
-        wrap.appendChild(totals);
-        host.appendChild(wrap);
-      }
-
-      addSummary("IMSF Total", t9OB, t9CB, t9Sales, t9SV, t9CBV, "text-neon-blue");
-      addSummary("BEER Total", t10OB, t10CB, t10Sales, t10SV, t10CBV, "text-amber-400");
-      addSummary("Grand Total (IMSF + BEER)", t9OB+t10OB, t9CB+t10CB, t9Sales+t10Sales, t9SV+t10SV, t9CBV+t10CBV, "text-neon-purple");
-    }
-
-    // ══════════════════════════════════════════════
-    // EDIT ALL / SAVE ALL
-    // ══════════════════════════════════════════════
-    const editAllBtn = document.getElementById("editAllBtn");
-    const saveAllBtn = document.getElementById("saveAllBtn");
-    let editAllActive = false;
-    let currentEditGroupIndex = null;
-
-    editAllBtn.addEventListener("click", function () {
-      if (editAllActive) { alert("Already in Edit All mode. Click SAVE to finish."); return; }
-      renderGroupedTables();
-      const host = document.getElementById("groups");
-      const tables = host.querySelectorAll(".data-table");
-      tables.forEach(t => {
-        const rows = t.querySelectorAll("tbody tr");
-        rows.forEach(row => {
-          const cells = row.querySelectorAll("td");
-          if (cells.length < 9) return;
-          cells[3].contentEditable = "true";
-          cells[5].contentEditable = "true";
-          cells[3].classList.add("editing");
-          cells[5].classList.add("editing");
-        });
-      });
-      editAllActive = true;
-      editAllBtn.style.display = "none";
-      saveAllBtn.style.display = "inline-flex";
+      const totals = document.createElement("div");
+      totals.className = "totals-row totalsTable rounded-xl overflow-x-auto mb-4";
+      const tt = document.createElement("table");
+      tt.className = "w-full";
+      tt.innerHTML = `<tr>
+        <td>OB: <span class="text-sky-300">${money(totalOB)}</span></td>
+        <td>CB: <span class="text-amber-300">${money(totalCB)}</span></td>
+        <td>Sales: <span class="text-emerald-300">${money(totalSales)}</span></td>
+        <td>SV: <span class="text-emerald-200">₹${money(totalSV)}</span></td>
+        <td>CBV: <span class="text-amber-200">₹${money(totalCBV)}</span></td>
+      </tr>`;
+      totals.appendChild(tt);
+      section.appendChild(totals);
+      host.appendChild(section);
     });
 
-    function saveAllFromAllTables() {
-      const host = document.getElementById("groups");
-      const tables = host.querySelectorAll(".data-table");
-
-      GROUPS.forEach((g, groupIndex) => {
-        const groupRows = records
-          .map((rec, idx) => ({ rec, idx }))
-          .filter(x => g.filter(x.rec))
-          .sort(compareObjByPriceThenBrand);
-        if (groupRows.length === 0) return;
-        const table = tables[groupIndex];
-        if (!table) return;
-        const bodyRows = table.querySelectorAll("tbody tr");
-        let gi = 0;
-        bodyRows.forEach(rowEl => {
-          const cells = rowEl.querySelectorAll("td");
-          if (cells.length < 9) return;
-          cells[3].contentEditable = "false";
-          cells[5].contentEditable = "false";
-          cells[3].classList.remove("editing");
-          cells[5].classList.remove("editing");
-          const newOB = Number(cells[3].textContent || 0);
-          const newSales = Number(cells[5].textContent || 0);
-          const price = Number(cells[6].textContent.replace("₹","") || 0);
-          const newCB = newOB - newSales;
-          const newSV = price * newSales;
-          const newCBV = price * newCB;
-          const recIndex = groupRows[gi].idx;
-          const rec = records[recIndex];
-          rec[2] = newOB; rec[4] = newSales; rec[3] = newCB; rec[6] = newSV; rec[7] = newCBV;
-          gi++;
-        });
-      });
-      saveData();
-      renderGroupedTables();
-      editAllActive = false;
-      saveAllBtn.style.display = "none";
-      editAllBtn.style.display = "inline-flex";
+    function addSummary(label, ob, cb, sales, sv, cbv, color) {
+      const wrap = document.createElement("div");
+      const title = document.createElement("h2");
+      title.className = "groupTitle font-display font-bold tracking-tight mt-5 mb-2 flex items-center gap-2 text-sm";
+      title.style.color = color;
+      title.innerHTML = `<span class="inline-block w-3 h-0.5 rounded" style="background:${color};"></span>${label}`;
+      wrap.appendChild(title);
+      const totals = document.createElement("div");
+      totals.className = "totals-row totalsTable rounded-xl overflow-x-auto";
+      const tt = document.createElement("table");
+      tt.className = "w-full";
+      tt.innerHTML = `<tr>
+        <td>OB: <span class="text-sky-300">${money(ob)}</span></td>
+        <td>CB: <span class="text-amber-300">${money(cb)}</span></td>
+        <td>Sales: <span class="text-emerald-300">${money(sales)}</span></td>
+        <td>SV: <span class="text-emerald-200">₹${money(sv)}</span></td>
+        <td>CBV: <span class="text-amber-200">₹${money(cbv)}</span></td>
+      </tr>`;
+      totals.appendChild(tt);
+      wrap.appendChild(totals);
+      host.appendChild(wrap);
     }
 
-    function saveSingleGroup(idx) {
-      const host = document.getElementById("groups");
-      const tables = host.querySelectorAll(".data-table");
-      const table = tables[idx];
+    addSummary("IMSF Total", t9OB, t9CB, t9Sales, t9SV, t9CBV, "#00d4ff");
+    addSummary("BEER Total", t10OB, t10CB, t10Sales, t10SV, t10CBV, "#fbbf24");
+    addSummary("Grand Total (IMSF + BEER)", t9OB+t10OB, t9CB+t10CB, t9Sales+t10Sales, t9SV+t10SV, t9CBV+t10CBV, "#a855f7");
+  }
+
+  // ══════════════════════════════════════════════
+  // EDIT ALL / SAVE ALL
+  // ══════════════════════════════════════════════
+  const editAllBtn = document.getElementById("editAllBtn");
+  const saveAllBtn = document.getElementById("saveAllBtn");
+  let editAllActive = false;
+  let currentEditGroupIndex = null;
+
+  editAllBtn.addEventListener("click", function() {
+    if (editAllActive) { alert("Already in Edit All mode. Click SAVE to finish."); return; }
+    renderGroupedTables();
+    document.querySelectorAll("#groups .data-table tbody tr").forEach(row => {
+      const cells = row.querySelectorAll("td");
+      if (cells.length < 9) return;
+      cells[3].contentEditable = "true"; cells[5].contentEditable = "true";
+      cells[3].classList.add("editing"); cells[5].classList.add("editing");
+    });
+    editAllActive = true;
+    editAllBtn.style.display = "none";
+    saveAllBtn.style.display = "inline-flex";
+  });
+
+  function saveAllFromAllTables() {
+    const tables = document.querySelectorAll("#groups .data-table");
+    GROUPS.forEach((g, groupIndex) => {
+      const groupRows = records.map((rec,idx)=>({rec,idx})).filter(x=>g.filter(x.rec)).sort(compareObjByPriceThenBrand);
+      if (!groupRows.length) return;
+      const table = tables[groupIndex];
       if (!table) return;
-      const g = GROUPS[idx];
-      const groupRows = records
-        .map((r, i) => ({ r, idx: i }))
-        .filter(x => g.filter(x.r))
-        .sort((a,b) => compareByPriceThenBrand(a.r, b.r));
-      const bodyRows = table.querySelectorAll("tbody tr");
       let gi = 0;
-      bodyRows.forEach(rowEl => {
+      table.querySelectorAll("tbody tr").forEach(rowEl => {
         const cells = rowEl.querySelectorAll("td");
         if (cells.length < 9) return;
-        cells[3].contentEditable = "false";
-        cells[4].contentEditable = "false";
-        cells[3].classList.remove("editing");
-        cells[4].classList.remove("editing");
-        const newOB = parseFloat(cells[3].textContent || 0);
-        const newCB = parseFloat(cells[4].textContent || 0);
-        const recIndex = groupRows[gi].idx;
-        const rec = records[recIndex];
-        rec[2] = newOB; rec[3] = newCB; rec[4] = newOB - newCB;
-        rec[6] = rec[5] * rec[4]; rec[7] = rec[5] * rec[3];
+        cells[3].contentEditable = "false"; cells[5].contentEditable = "false";
+        cells[3].classList.remove("editing"); cells[5].classList.remove("editing");
+        const newOB = Number(cells[3].textContent||0);
+        const newSales = Number(cells[5].textContent||0);
+        const price = Number((cells[6].textContent||"").replace("₹","")||0);
+        const newCB = newOB - newSales;
+        const rec = records[groupRows[gi].idx];
+        rec[2]=newOB; rec[4]=newSales; rec[3]=newCB; rec[6]=price*newSales; rec[7]=price*newCB;
         gi++;
       });
-      saveData();
-      renderGroupedTables();
-      currentEditGroupIndex = null;
-      saveAllBtn.style.display = "none";
-      editAllBtn.style.display = "inline-flex";
+    });
+    saveData(); renderGroupedTables();
+    editAllActive = false;
+    saveAllBtn.style.display = "none";
+    editAllBtn.style.display = "inline-flex";
+  }
+
+  function saveSingleGroup(idx) {
+    const tables = document.querySelectorAll("#groups .data-table");
+    const table = tables[idx];
+    if (!table) return;
+    const g = GROUPS[idx];
+    const groupRows = records.map((r,i)=>({r,idx:i})).filter(x=>g.filter(x.r)).sort((a,b)=>compareByPriceThenBrand(a.r,b.r));
+    let gi = 0;
+    table.querySelectorAll("tbody tr").forEach(rowEl => {
+      const cells = rowEl.querySelectorAll("td");
+      if (cells.length < 9) return;
+      cells[3].contentEditable = "false"; cells[4].contentEditable = "false";
+      cells[3].classList.remove("editing"); cells[4].classList.remove("editing");
+      const newOB = parseFloat(cells[3].textContent||0);
+      const newCB = parseFloat(cells[4].textContent||0);
+      const rec = records[groupRows[gi].idx];
+      rec[2]=newOB; rec[3]=newCB; rec[4]=newOB-newCB; rec[6]=rec[5]*rec[4]; rec[7]=rec[5]*rec[3];
+      gi++;
+    });
+    saveData(); renderGroupedTables();
+    currentEditGroupIndex = null;
+    saveAllBtn.style.display = "none";
+    editAllBtn.style.display = "inline-flex";
+  }
+
+  saveAllBtn.addEventListener("click", function() {
+    if (editAllActive) { saveAllFromAllTables(); return; }
+    if (typeof currentEditGroupIndex === "number") saveSingleGroup(currentEditGroupIndex);
+  });
+
+  // ══════════════════════════════════════════════
+  // FORM SUBMIT
+  // ══════════════════════════════════════════════
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const brand = brandInput.value.trim();
+    const ml = parseFloat(mlSelect.value||0);
+    const ob = parseFloat(document.getElementById("ob").value||0);
+    const cb = parseFloat(document.getElementById("cb").value||0);
+    const price = parseFloat(priceInput.value||0);
+    if (!brand||!ml||!price) { alert("Please select Brand + ML. Price will auto-fill."); return; }
+    const sales = ob-cb, sv = price*sales, cbv = price*cb;
+    const newRecord = [brand,ml,ob,cb,sales,price,sv,cbv];
+    const groupIndex = GROUPS.findIndex(g=>g.filter(newRecord));
+    if (groupIndex===-1) { alert("This record doesn't match any table rules."); return; }
+
+    const editIndexStr = localStorage.getItem("editIndex");
+    if (editIndexStr !== null) {
+      records[parseInt(editIndexStr,10)] = newRecord;
+      localStorage.removeItem("editIndex");
+      alert("Row updated successfully.");
+    } else {
+      const dup = records.some(r => GROUPS[groupIndex].filter(r) && (r[0]||"").toLowerCase()===brand.toLowerCase());
+      if (dup) { alert('"'+brand+'" already exists in Table '+(groupIndex+1)+'.'); return; }
+      records.push(newRecord);
     }
+    saveData(); renderGroupedTables();
+    form.reset(); datalist.innerHTML = "";
+  });
 
-    saveAllBtn.addEventListener("click", function () {
-      if (editAllActive) { saveAllFromAllTables(); return; }
-      if (typeof currentEditGroupIndex === "number") saveSingleGroup(currentEditGroupIndex);
-    });
+  // ══════════════════════════════════════════════
+  // ERASE
+  // ══════════════════════════════════════════════
+  document.getElementById("eraseBtn").addEventListener("click", () => {
+    const ef = document.getElementById("eraseForm");
+    ef.style.display = ef.style.display === "none" ? "block" : "none";
+  });
 
-    // ══════════════════════════════════════════════
-    // FORM SUBMIT
-    // ══════════════════════════════════════════════
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const brand = brandInput.value.trim();
-      const ml = parseFloat(mlSelect.value || 0);
-      const ob = parseFloat(document.getElementById("ob").value || 0);
-      const cb = parseFloat(document.getElementById("cb").value || 0);
-      const price = parseFloat(priceInput.value || 0);
-      if (!brand || !ml || !price) { alert("Please select Brand + ML. Price will auto-fill."); return; }
-      const sales = ob - cb;
-      const sv = price * sales;
-      const cbv = price * cb;
-      const newRecord = [brand, ml, ob, cb, sales, price, sv, cbv];
-      const groupIndex = GROUPS.findIndex(g => g.filter(newRecord));
-      if (groupIndex === -1) { alert("This record doesn't match any table rules."); return; }
+  document.getElementById("eraseSubmit").addEventListener("click", () => {
+    const tno = parseInt(document.getElementById("eraseTableNo").value,10);
+    const rno = parseInt(document.getElementById("eraseRowNo").value,10);
+    if (!Number.isInteger(tno)||tno<1||tno>8) { alert("Enter table number 1 to 8"); return; }
+    if (!Number.isInteger(rno)||rno<1) { alert("Enter row number"); return; }
+    const g = GROUPS[tno-1];
+    const tableRows = records.map((rec,idx)=>({rec,idx})).filter(x=>g.filter(x.rec)).sort(compareObjByPriceThenBrand);
+    if (!tableRows.length) { alert("No records in this table"); return; }
+    if (rno>tableRows.length) { alert("Only "+tableRows.length+" rows"); return; }
+    records.splice(tableRows[rno-1].idx,1);
+    saveData(); renderGroupedTables();
+    document.getElementById("eraseTableNo").value = "";
+    document.getElementById("eraseRowNo").value = "";
+  });
 
-      const editIndexStr = localStorage.getItem("editIndex");
-      const isEditing = editIndexStr !== null;
-      const editIndex = isEditing ? parseInt(editIndexStr, 10) : -1;
+  // ══════════════════════════════════════════════
+  // EDIT SINGLE ROW
+  // ══════════════════════════════════════════════
+  document.getElementById("muhil").addEventListener("click", function() {
+    const tableNo = parseInt(prompt("Enter Table Number to edit:"),10);
+    if (!tableNo) return;
+    const rowNo = parseInt(prompt("Enter Row Number to edit:"),10);
+    if (!rowNo) return;
+    if (tableNo<1||tableNo>8||rowNo<1) { alert("Invalid."); return; }
+    const g = GROUPS[tableNo-1];
+    const gr = records.map((r,idx)=>({r,idx})).filter(o=>g.filter(o.r)).sort((a,b)=>compareByPriceThenBrand(a.r,b.r));
+    if (!gr.length) { alert("No records."); return; }
+    if (rowNo>gr.length) { alert("Only "+gr.length+" rows."); return; }
+    const target = gr[rowNo-1];
+    brandInput.value=target.r[0]; mlSelect.value=target.r[1];
+    document.getElementById("ob").value=target.r[2]; document.getElementById("cb").value=target.r[3];
+    priceInput.value=target.r[5];
+    localStorage.setItem("editIndex",target.idx);
+    alert("Row loaded. Edit and Submit.");
+  });
 
-      if (isEditing) {
-        records[editIndex] = newRecord;
-        localStorage.removeItem("editIndex");
-        alert("Row updated successfully.");
-      } else {
-        const dup = records.some(r => GROUPS[groupIndex].filter(r) && (r[0]||"").toLowerCase() === brand.toLowerCase());
-        if (dup) { alert('"' + brand + '" already exists in Table ' + (groupIndex+1) + '.'); return; }
-        records.push(newRecord);
-      }
-      saveData();
-      renderGroupedTables();
-      form.reset();
-      brandInput.setAttribute("list", "suggestions");
-      datalist.innerHTML = "";
-    });
+  // ══════════════════════════════════════════════
+  // CLEAR ALL
+  // ══════════════════════════════════════════════
+  function clearAll() {
+    if (!confirm("Clear all records?")) return;
+    const text = prompt('Type "yes" to confirm:');
+    if (!text||text.toLowerCase()!=="yes") { alert("Cancelled."); return; }
+    records = []; localStorage.removeItem(STORAGEKEY); renderGroupedTables();
+  }
+  window.clearAll = clearAll;
 
-    // ══════════════════════════════════════════════
-    // ERASE
-    // ══════════════════════════════════════════════
-    const eraseBtn = document.getElementById("eraseBtn");
-    const eraseFormDiv = document.getElementById("eraseForm");
-    const eraseSubmit = document.getElementById("eraseSubmit");
+  // ══════════════════════════════════════════════
+  // FIREBASE
+  // ══════════════════════════════════════════════
+  const firebaseConfig = {
+    apiKey: "AIzaSyCYBSq_NTLy0lqcL1bXd3iGtjr16fZEvBA",
+    authDomain: "store-45bb2.firebaseapp.com",
+    projectId: "store-45bb2",
+    storageBucket: "store-45bb2.firebasestorage.app",
+    messagingSenderId: "385087942859",
+    appId: "1:385087942859:web:47de5f5375550a26bb6b4e",
+    measurementId: "G-V7PY6W7VND"
+  };
 
-    eraseBtn.addEventListener("click", () => {
-      eraseFormDiv.style.display = eraseFormDiv.style.display === "none" ? "block" : "none";
-    });
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const provider = new firebase.auth.GoogleAuthProvider();
+  let currentUser = null;
 
-    eraseSubmit.addEventListener("click", () => {
-      const tno = parseInt(document.getElementById("eraseTableNo").value, 10);
-      const rno = parseInt(document.getElementById("eraseRowNo").value, 10);
-      if (!Number.isInteger(tno) || tno < 1 || tno > 8) { alert("Enter table number 1 to 8"); return; }
-      if (!Number.isInteger(rno) || rno < 1) { alert("Enter row number"); return; }
-      const g = GROUPS[tno - 1];
-      const tableRows = records.map((rec, idx) => ({rec, idx})).filter(x => g.filter(x.rec)).sort(compareObjByPriceThenBrand);
-      if (!tableRows.length) { alert("No records in this table"); return; }
-      if (rno > tableRows.length) { alert("Only " + tableRows.length + " rows"); return; }
-      records.splice(tableRows[rno-1].idx, 1);
-      saveData();
-      renderGroupedTables();
-      document.getElementById("eraseTableNo").value = "";
-      document.getElementById("eraseRowNo").value = "";
-    });
-
-    // ══════════════════════════════════════════════
-    // EDIT SINGLE ROW
-    // ══════════════════════════════════════════════
-    document.getElementById("muhil").addEventListener("click", function () {
-      const tableNoStr = prompt("Enter Table Number to edit:");
-      if (tableNoStr === null) return;
-      const rowNoStr = prompt("Enter Row Number to edit:");
-      if (rowNoStr === null) return;
-      const tableNo = parseInt(tableNoStr, 10);
-      const rowNo = parseInt(rowNoStr, 10);
-      if (!Number.isInteger(tableNo) || !Number.isInteger(rowNo) || tableNo < 1 || tableNo > 8 || rowNo < 1) { alert("Invalid."); return; }
-      const g = GROUPS[tableNo - 1];
-      const gr = records.map((r, idx) => ({r, idx})).filter(o => g.filter(o.r)).sort((a,b) => compareByPriceThenBrand(a.r, b.r));
-      if (!gr.length) { alert("No records."); return; }
-      if (rowNo > gr.length) { alert("Only " + gr.length + " rows."); return; }
-      const target = gr[rowNo - 1];
-      const row = target.r;
-      brandInput.value = row[0]; mlSelect.value = row[1];
-      document.getElementById("ob").value = row[2]; document.getElementById("cb").value = row[3];
-      priceInput.value = row[5];
-      localStorage.setItem("editIndex", target.idx);
-      alert("Row loaded. Edit and Submit.");
-    });
-
-    // ══════════════════════════════════════════════
-    // CLEAR ALL
-    // ══════════════════════════════════════════════
-    function clearAll() {
-      if (!confirm("Clear all records?")) return;
-      const text = prompt('Type "yes" to confirm:');
-      if (!text || text.toLowerCase() !== "yes") { alert("Cancelled."); return; }
-      records = [];
-      localStorage.removeItem(STORAGEKEY);
-      renderGroupedTables();
+  function updateLoginUI(user) {
+    const status = document.getElementById("userStatus");
+    const hint = document.getElementById("userHint");
+    const avatar = document.getElementById("userAvatar");
+    const loginBtns = [document.getElementById("loginBtn"), document.getElementById("loginBtnMobile")];
+    const logoutBtns = [document.getElementById("logoutBtn"), document.getElementById("logoutBtnMobile")];
+    if (user) {
+      const label = user.email||user.displayName||user.uid;
+      status.textContent = label; hint.textContent = "Signed in";
+      avatar.textContent = (label[0]||"?").toUpperCase();
+      loginBtns.forEach(b=>b.style.display="none");
+      logoutBtns.forEach(b=>b.style.display="inline-flex");
+    } else {
+      status.textContent="Not Logged In"; hint.textContent="Tap login to connect";
+      avatar.textContent="?";
+      loginBtns.forEach(b=>b.style.display="inline-flex");
+      logoutBtns.forEach(b=>b.style.display="none");
     }
-    window.clearAll = clearAll;
+  }
 
-    // ══════════════════════════════════════════════
-    // FIREBASE
-    // ══════════════════════════════════════════════
-    const firebaseConfig = {
-     apiKey: "AIzaSyCYBSq_NTLy0lqcL1bXd3iGtjr16fZEvBA",
-      authDomain: "store-45bb2.firebaseapp.com",
-      projectId: "store-45bb2",
-      storageBucket: "store-45bb2.firebasestorage.app",
-      messagingSenderId: "385087942859",
-      appId: "1:385087942859:web:47de5f5375550a26bb6b4e",
-      measurementId: "G-V7PY6W7VND"
-    };
+  auth.onAuthStateChanged(user => { currentUser=user||null; updateLoginUI(currentUser); });
+  document.getElementById("loginBtn").onclick =
+  document.getElementById("loginBtnMobile").onclick = () => auth.signInWithPopup(provider);
+  document.getElementById("logoutBtn").onclick =
+  document.getElementById("logoutBtnMobile").onclick = () => auth.signOut();
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    let currentUser = null;
+  // ══════════════════════════════════════════════
+  // NEXT DAY
+  // ══════════════════════════════════════════════
+  document.getElementById("nextDayBtn").onclick = () => {
+    if (!records.length) return alert("Table is empty.");
+    if (!confirm("Next Day? OB = previous CB.")) return;
+    records = records.map(r => {
+      const oldCB=Number(r[3]||0), price=Number(r[5]||0);
+      return [r[0],r[1],oldCB,oldCB,0,price,0,price*oldCB];
+    });
+    saveData(); renderGroupedTables(); alert("Next day applied.");
+  };
 
-    function updateLoginUI(user) {
-      const status = document.getElementById("userStatus");
-      const hint = document.getElementById("userHint");
-      const avatar = document.getElementById("userAvatar");
-      const els = {
-        login: [document.getElementById("loginBtn"), document.getElementById("loginBtnMobile")],
-        logout: [document.getElementById("logoutBtn"), document.getElementById("logoutBtnMobile")]
-      };
-      if (user) {
-        const label = user.email || user.displayName || user.uid;
-        status.textContent = label;
-        hint.textContent = "Signed in";
-        avatar.textContent = (label[0] || "?").toUpperCase();
-        els.login.forEach(b => b.style.display = "none");
-        els.logout.forEach(b => b.style.display = "inline-flex");
-      } else {
-        status.textContent = "Not Logged In";
-        hint.textContent = "Tap login to connect";
-        avatar.textContent = "?";
-        els.login.forEach(b => b.style.display = "inline-flex");
-        els.logout.forEach(b => b.style.display = "none");
-      }
-    }
-
-    auth.onAuthStateChanged(user => { currentUser = user || null; updateLoginUI(currentUser); });
-
-    document.getElementById("loginBtn").onclick =
-    document.getElementById("loginBtnMobile").onclick = () => auth.signInWithPopup(provider);
-    document.getElementById("logoutBtn").onclick =
-    document.getElementById("logoutBtnMobile").onclick = () => auth.signOut();
-
-    // ══════════════════════════════════════════════
-    // NEXT DAY
-    // ══════════════════════════════════════════════
-    document.getElementById("nextDayBtn").onclick = () => {
-      if (!records.length) return alert("Table is empty.");
-      if (!confirm("Next Day? OB = previous CB, CB unchanged.")) return;
-      records = records.map(r => {
-        const oldCB = Number(r[3]||0), price = Number(r[5]||0);
-        return [r[0], r[1], oldCB, oldCB, 0, price, 0, price*oldCB];
+  // ══════════════════════════════════════════════
+  // CLOUD
+  // ══════════════════════════════════════════════
+  async function storeToCloud() {
+    if (!currentUser) return alert("Please login first.");
+    if (!records.length) return alert("No data to store.");
+    const listName = prompt("Report name:", new Date().toLocaleDateString());
+    if (!listName) return;
+    const data = records.map(r=>({brand:r[0],ml:r[1],ob:r[2],cb:r[3],sales:r[4],price:r[5],sv:r[6],cbv:r[7]}));
+    try {
+      await db.collection("users").doc(currentUser.uid).collection("reports").add({
+        name:listName, data, timestamp:firebase.firestore.FieldValue.serverTimestamp()
       });
-      saveData(); renderGroupedTables(); alert("Next day applied.");
-    };
+      alert("Saved to cloud.");
+    } catch(e) { console.error(e); alert("Error: "+e.message); }
+  }
+  document.getElementById("storeCloudBtn").onclick = storeToCloud;
 
-    // ══════════════════════════════════════════════
-    // CLOUD STORE / LIST / LOAD
-    // ══════════════════════════════════════════════
-    async function storeToCloud() {
-      if (!currentUser) return alert("Please login first.");
-      if (!records.length) return alert("No data to store.");
-      const listName = prompt("Report name:", new Date().toLocaleDateString());
-      if (!listName) return;
-      const data = records.map(r => ({brand:r[0],ml:r[1],ob:r[2],cb:r[3],sales:r[4],price:r[5],sv:r[6],cbv:r[7]}));
-      try {
-        await db.collection("users").doc(currentUser.uid).collection("reports").add({
-          name: listName, data, timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        alert("Saved to cloud.");
-      } catch (e) { console.error(e); alert("Error: " + e.message); }
-    }
-    document.getElementById("storeCloudBtn").onclick = storeToCloud;
+  async function showCloudLists() {
+    if (!currentUser) return alert("Please login first.");
+    const modal = document.getElementById("listModal");
+    const listDiv = document.getElementById("cloudDataList");
+    modal.style.display = "flex";
+    listDiv.textContent = "Loading...";
+    try {
+      const snap = await db.collection("users").doc(currentUser.uid).collection("reports").orderBy("timestamp","desc").get();
+      listDiv.innerHTML = "";
+      if (snap.empty) { listDiv.textContent = "No cloud reports found."; return; }
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const div = document.createElement("div");
+        div.className = "flex items-center justify-between glass-chip rounded-xl px-3 py-2";
+        div.innerHTML = `
+          <div>
+            <span class="font-semibold" style="color:var(--text-primary);">${d.name||"(no name)"}</span>
+            <span class="text-xs ml-2" style="color:var(--text-muted);">${(d.data||[]).length} rows</span>
+          </div>
+          <button onclick="loadCloudReport('${docSnap.id}')" class="btn-neon btn-brand pill-button px-3 py-1.5 text-[11px] font-semibold">Load</button>
+        `;
+        listDiv.appendChild(div);
+      });
+    } catch(e) { console.error(e); listDiv.textContent = "Error: "+e.message; }
+  }
+  document.getElementById("listBtn").onclick = showCloudLists;
 
-    async function showCloudLists() {
-      if (!currentUser) return alert("Please login first.");
-      const modal = document.getElementById("listModal");
-      const listDiv = document.getElementById("cloudDataList");
-      modal.style.display = "flex";
-      listDiv.textContent = "Loading...";
-      try {
-        const snap = await db.collection("users").doc(currentUser.uid).collection("reports").orderBy("timestamp","desc").get();
-        listDiv.innerHTML = "";
-        if (snap.empty) { listDiv.textContent = "No cloud reports found."; return; }
-        snap.forEach(docSnap => {
-          const d = docSnap.data();
-          const div = document.createElement("div");
-          div.className = "flex items-center justify-between glass-chip rounded-xl px-3 py-2";
-          div.innerHTML = `
-            <div>
-              <span class="font-semibold text-slate-100">${d.name || "(no name)"}</span>
-              <span class="text-slate-500 text-xs ml-2">${(d.data||[]).length} rows</span>
-            </div>
-            <button onclick="loadCloudReport('${docSnap.id}')" class="btn-neon btn-brand pill-button px-3 py-1.5 text-[11px] font-semibold">Load</button>
-          `;
-          listDiv.appendChild(div);
-        });
-      } catch (e) { console.error(e); listDiv.textContent = "Error: " + e.message; }
-    }
-    document.getElementById("listBtn").onclick = showCloudLists;
+  window.loadCloudReport = async (id) => {
+    if (!currentUser) return alert("Please login first.");
+    if (!confirm("Overwrite current data?")) return;
+    try {
+      const docSnap = await db.collection("users").doc(currentUser.uid).collection("reports").doc(id).get();
+      if (!docSnap.exists) { alert("Not found."); return; }
+      records = (docSnap.data().data||[]).map(o=>[o.brand,o.ml,o.ob,o.cb,o.sales,o.price,o.sv,o.cbv]);
+      saveData(); renderGroupedTables();
+      document.getElementById("listModal").style.display = "none";
+    } catch(e) { console.error(e); alert("Error: "+e.message); }
+  };
 
-    window.loadCloudReport = async (id) => {
-      if (!currentUser) return alert("Please login first.");
-      if (!confirm("Overwrite current data?")) return;
-      try {
-        const docSnap = await db.collection("users").doc(currentUser.uid).collection("reports").doc(id).get();
-        if (!docSnap.exists) { alert("Not found."); return; }
-        const recs = docSnap.data().data || [];
-        records = recs.map(o => [o.brand, o.ml, o.ob, o.cb, o.sales, o.price, o.sv, o.cbv]);
-        saveData(); renderGroupedTables();
-        document.getElementById("listModal").style.display = "none";
-      } catch (e) { console.error(e); alert("Error: " + e.message); }
-    };
-
-    // ══════════════════════════════════════════════
-    // THEME TOGGLE
-    // ══════════════════════════════════════════════
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-    const rootHtml = document.documentElement;
-
-    function setTheme(isDark) {
-      if (isDark) {
-        rootHtml.classList.add('dark');
-        themeIcon.textContent = '🌙';
-        if (themeLabel) themeLabel.textContent = 'Dark';
-        try { localStorage.setItem('ui-theme', 'dark'); } catch {}
-      } else {
-        rootHtml.classList.remove('dark');
-        themeIcon.textContent = '☀️';
-        if (themeLabel) themeLabel.textContent = 'Light';
-        try { localStorage.setItem('ui-theme', 'light'); } catch {}
-      }
-    }
-
-    (function initTheme() {
-      let stored = null;
-      try { stored = localStorage.getItem('ui-theme'); } catch {}
-      if (stored === 'dark') setTheme(true);
-      else if (stored === 'light') setTheme(false);
-      else setTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    })();
-
-    themeToggle.addEventListener('click', () => setTheme(!rootHtml.classList.contains('dark')));
-
-    // ══════════════════════════════════════════════
-    // INIT
-    // ══════════════════════════════════════════════
-    loadData();
-    renderBrandOptions("");
-    renderGroupedTables();
+  // ══════════════════════════════════════════════
+  // INIT
+  // ══════════════════════════════════════════════
+  loadData();
+  renderBrandOptions("");
+  renderGroupedTables();
   </script>
 </body>
 </html>
