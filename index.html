@@ -5,170 +5,674 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop 2605 - Home</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+    :root {
+      --primary: #78dbff;
+      --primary-glow: rgba(120, 219, 255, 0.6);
+      --accent: #a78bfa;
+      --accent-glow: rgba(167, 139, 250, 0.5);
+      --pink: #f472b6;
+      --pink-glow: rgba(244, 114, 182, 0.5);
+      --surface: rgba(255, 255, 255, 0.06);
+      --surface-hover: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-hover: rgba(255, 255, 255, 0.25);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --radius: 28px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
     * {
       box-sizing: border-box;
-    }
-    body {
       margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      background: linear-gradient(135deg, #111 0%, #333 50%, #1a1a2e 100%);
-      font-family: Arial, sans-serif;
-      color: white;
+      padding: 40px 20px;
+      background: #0a0a0f;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
       overflow-x: hidden;
       position: relative;
     }
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(120,119,198,0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,119,198,0.2) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120,219,255,0.15) 0%, transparent 50%);
-      animation: float 20s ease-in-out infinite;
+
+    /* ── Animated mesh gradient background ── */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
       pointer-events: none;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      33% { transform: translateY(-15px) rotate(120deg); }
-      66% { transform: translateY(15px) rotate(240deg); }
+
+    .bg-mesh .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: orbFloat 20s ease-in-out infinite;
     }
+
+    .bg-mesh .orb:nth-child(1) {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(120,119,198,0.5), transparent 70%);
+      top: -10%;
+      left: -10%;
+      animation-delay: 0s;
+      animation-duration: 25s;
+    }
+
+    .bg-mesh .orb:nth-child(2) {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(244,114,182,0.4), transparent 70%);
+      top: 50%;
+      right: -15%;
+      animation-delay: -5s;
+      animation-duration: 22s;
+    }
+
+    .bg-mesh .orb:nth-child(3) {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(120,219,255,0.35), transparent 70%);
+      bottom: -10%;
+      left: 30%;
+      animation-delay: -10s;
+      animation-duration: 28s;
+    }
+
+    .bg-mesh .orb:nth-child(4) {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(167,139,250,0.3), transparent 70%);
+      top: 30%;
+      left: 50%;
+      animation-delay: -15s;
+      animation-duration: 30s;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(60px, -80px) scale(1.1); }
+      50% { transform: translate(-40px, 60px) scale(0.95); }
+      75% { transform: translate(80px, 40px) scale(1.05); }
+    }
+
+    /* ── Noise texture overlay ── */
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ── Grid lines background ── */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-size: 60px 60px;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+
+    /* ── Floating particles ── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      animation: particleRise linear infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; width: 2px; height: 2px; }
+    .particle:nth-child(2) { left: 25%; animation-duration: 15s; animation-delay: -3s; width: 4px; height: 4px; opacity: 0.5; }
+    .particle:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: -6s; }
+    .particle:nth-child(4) { left: 55%; animation-duration: 18s; animation-delay: -2s; width: 2px; height: 2px; }
+    .particle:nth-child(5) { left: 70%; animation-duration: 14s; animation-delay: -8s; width: 4px; height: 4px; opacity: 0.4; }
+    .particle:nth-child(6) { left: 85%; animation-duration: 11s; animation-delay: -4s; }
+    .particle:nth-child(7) { left: 15%; animation-duration: 16s; animation-delay: -10s; width: 2px; height: 2px; }
+    .particle:nth-child(8) { left: 60%; animation-duration: 13s; animation-delay: -7s; }
+
+    @keyframes particleRise {
+      0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+      10% { opacity: 1; transform: translateY(90vh) translateX(10px) scale(1); }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-10vh) translateX(-20px) scale(0.5); opacity: 0; }
+    }
+
+    /* ── Main wrapper ── */
     .wrapper {
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 10;
       width: 100%;
-      max-width: 400px;
+      max-width: 480px;
+      animation: fadeInUp 0.8s ease-out;
     }
-    .wrapper h1 {
-      margin-bottom: 30px;
-      font-size: clamp(1.8em, 5vw, 2.5em);
-      background: linear-gradient(45deg, #fff, #ccc);
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Header section ── */
+    .header {
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .header .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .badge .dot {
+      width: 6px;
+      height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(34,197,94,0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2em, 7vw, 3.5em);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 30%, var(--primary) 60%, var(--accent) 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255,255,255,0.5);
-      animation: glow 2s ease-in-out infinite alternate;
+      background-clip: text;
+      animation: gradientShift 6s ease-in-out infinite, fadeInUp 0.8s ease-out 0.3s both;
     }
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
-      to { filter: drop-shadow(0 0 20px rgba(255,255,255,0.8)); }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
-    .buttons {
+
+    .header .subtitle {
+      font-size: clamp(14px, 3.5vw, 16px);
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 300;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .header .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 20px auto 0;
+      border-radius: 2px;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    /* ── Cards grid ── */
+    .cards {
       display: flex;
       flex-direction: column;
-      gap: 25px;
+      gap: 20px;
       align-items: center;
     }
-    .btn-block {
-      text-align: center;
+
+    /* ── Individual card ── */
+    .card {
       width: 100%;
+      animation: fadeInUp 0.8s ease-out both;
     }
-    .img-btn {
-      border: none;
+
+    .card:nth-child(1) { animation-delay: 0.5s; }
+    .card:nth-child(2) { animation-delay: 0.65s; }
+    .card:nth-child(3) { animation-delay: 0.8s; }
+
+    .card-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: var(--surface);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
       cursor: pointer;
-      box-shadow: 
-        0 8px 32px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
       position: relative;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 120px; /* Ensures touch target size */
-      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
     }
-    .img-btn::before {
+
+    /* Hover glow border effect */
+    .card-inner::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius);
+      padding: 1px;
+      background: linear-gradient(135deg, transparent 30%, var(--card-accent, var(--primary)) 50%, transparent 70%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    /* Shimmer sweep */
+    .card-inner::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: -150%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.06),
+        transparent
+      );
+      transform: skewX(-20deg);
+      transition: none;
+    }
+
+    .card-inner:hover::after,
+    .card-inner:active::after {
+      animation: shimmer 0.8s ease-out;
+    }
+
+    @keyframes shimmer {
+      to { left: 150%; }
+    }
+
+    .card-inner:hover {
+      transform: translateY(-6px) scale(1.02);
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.35),
+        0 0 40px var(--card-shadow, var(--primary-glow));
+    }
+
+    .card-inner:hover::before {
+      opacity: 1;
+    }
+
+    .card-inner:active {
+      transform: translateY(-2px) scale(1.01);
+      transition-duration: 0.1s;
+    }
+
+    /* Card color themes */
+    .card--calc { --card-accent: var(--primary); --card-shadow: var(--primary-glow); }
+    .card--cloud { --card-accent: var(--accent); --card-shadow: var(--accent-glow); }
+    .card--beta { --card-accent: var(--pink); --card-shadow: var(--pink-glow); }
+
+    /* ── Icon container ── */
+    .card-icon {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .card-inner:hover .card-icon {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 0 20px var(--card-shadow, rgba(120,219,255,0.3));
+    }
+
+    .card-icon img {
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-    .img-btn:hover::before,
-    .img-btn:active::before {
-      left: 100%;
-    }
-    .img-btn img {
-      width: clamp(120px, 35vw, 160px);
-      height: clamp(120px, 35vw, 160px);
-      object-fit: contain;
-      border-radius: 16px;
+      object-fit: cover;
+      border-radius: 19px;
       display: block;
-      max-width: 100%;
     }
-    .img-btn:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 
-        0 20px 40px rgba(0,0,0,0.4),
-        0 0 30px rgba(120, 219, 255, 0.5),
-        inset 0 1px 0 rgba(255,255,255,0.3);
-      background: rgba(255, 255, 255, 0.15);
+
+    /* ── Card text content ── */
+    .card-content {
+      flex: 1;
+      text-align: left;
+      min-width: 0;
     }
-    .img-btn:active {
-      transform: translateY(-4px) scale(1.01);
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 4.5vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+      transition: var(--transition);
     }
-    .label {
-      margin-top: 12px;
-      font-size: clamp(16px, 4vw, 20px);
-      letter-spacing: 1.2px;
-      font-weight: bold;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+
+    .card-inner:hover .card-title {
+      color: var(--card-accent, var(--primary));
+    }
+
+    .card-desc {
+      font-size: clamp(12px, 3vw, 14px);
+      color: var(--text-muted);
+      line-height: 1.5;
+      transition: var(--transition);
+    }
+
+    .card-inner:hover .card-desc {
+      color: #b0bec5;
+    }
+
+    /* ── Arrow indicator ── */
+    .card-arrow {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .card-arrow svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .card-inner:hover .card-arrow {
+      background: var(--card-accent, var(--primary));
+      border-color: transparent;
+      transform: translateX(4px);
+      box-shadow: 0 0 20px var(--card-shadow, var(--primary-glow));
+    }
+
+    .card-inner:hover .card-arrow svg {
+      stroke: #0a0a0f;
+    }
+
+    /* ── Beta badge ── */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: 8px;
+      vertical-align: middle;
+      animation: tagPulse 3s ease-in-out infinite;
+    }
+
+    .tag--beta {
+      background: linear-gradient(135deg, var(--pink), #e879a8);
+      color: #0a0a0f;
+    }
+
+    .tag--new {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #0a0a0f;
+    }
+
+    @keyframes tagPulse {
+      0%, 100% { box-shadow: 0 0 0 0 var(--card-shadow, rgba(244,114,182,0.4)); }
+      50% { box-shadow: 0 0 12px 2px var(--card-shadow, rgba(244,114,182,0.3)); }
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 50px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 1px;
+      animation: fadeInUp 0.8s ease-out 1s both;
+    }
+
+    .footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
       transition: color 0.3s;
     }
-    .img-btn:hover + .label,
-    .img-btn:active + .label {
-      color: #78dbff;
-      text-shadow: 0 0 15px rgba(120,219,255,0.8);
+
+    .footer a:hover {
+      color: var(--primary);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      body {
+        padding: 30px 16px;
+      }
+
+      .card-inner {
+        padding: 16px;
+        gap: 14px;
+        border-radius: 22px;
+      }
+
+      .card-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+      }
+
+      .card-icon img {
+        border-radius: 15px;
+      }
+
+      .card-arrow {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .wrapper {
+        max-width: 520px;
+      }
+
+      .card-inner {
+        padding: 24px;
+      }
+
+      .card-icon {
+        width: 90px;
+        height: 90px;
+      }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Focus accessibility ── */
+    .card-inner:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+      transform: translateY(-4px);
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1>SHOP NO: 2605</h1>
 
-    <div class="buttons">
-      <!-- Calculator button -->
-      <div class="btn-block">
-        <button class="img-btn" onclick="location.href='calculator.html'">
-          <img src="calculator.jpg" alt="Calculator">
-        </button>
-        <div class="label">Calculator</div>
-      </div>
-
-      <!-- Cloud lists button -->
-      <div class="btn-block">
-        <button class="img-btn" onclick="location.href='cloud.html'">
-          <img src="cloud.png" alt="Cloud Lists">
-        </button>
-        <div class="label">Cloud Lists</div>
-      </div>
-
-      <!-- Calculator Beta Program button -->
-      <div class="btn-block">
-        <button class="img-btn" onclick="location.href='calculator-beta.html'">
-          <img src="Beta.jpg" alt="Calculator Beta">
-        </button>
-        <div class="label">Beta Program</div>
-      </div>
-    </div>
+  <!-- Background layers -->
+  <div class="bg-mesh">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
   </div>
+  <div class="bg-grid"></div>
+  <div class="bg-noise"></div>
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="wrapper">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="badge">
+        <span class="dot"></span>
+        Online
+      </div>
+      <h1>SHOP 2605</h1>
+      <p class="subtitle">Your Digital Toolkit</p>
+      <div class="divider"></div>
+    </header>
+
+    <!-- Navigation Cards -->
+    <nav class="cards" aria-label="Main Navigation">
+
+      <!-- Calculator -->
+      <div class="card card--calc">
+        <a href="calculator.html" class="card-inner" aria-label="Open Calculator">
+          <div class="card-icon">
+            <img src="calculator.jpg" alt="" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-title">Calculator</div>
+            <div class="card-desc">Quick math & unit conversions at your fingertips</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Cloud Lists -->
+      <div class="card card--cloud">
+        <a href="cloud.html" class="card-inner" aria-label="Open Cloud Lists">
+          <div class="card-icon">
+            <img src="cloud.png" alt="" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-title">Cloud Lists <span class="tag tag--new">New</span></div>
+            <div class="card-desc">Sync your lists & notes across all devices</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Beta Program -->
+      <div class="card card--beta">
+        <a href="calculator-beta.html" class="card-inner" aria-label="Open Beta Program">
+          <div class="card-icon">
+            <img src="Beta.jpg" alt="" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-title">Beta Program <span class="tag tag--beta">Beta</span></div>
+            <div class="card-desc">Try upcoming features before everyone else</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Shop 2605 — All rights reserved</p>
+    </footer>
+
+  </div>
+
 </body>
 </html>
